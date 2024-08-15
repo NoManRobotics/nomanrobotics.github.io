@@ -46,7 +46,7 @@
 
             // Load the URDF model
             const loader = new URDFLoader();
-            loader.load('path-to-your-urdf-file.urdf', (urdf) => {
+            loader.load('URDF_description/urdf/carbonara.urdf', (urdf) => {
                 robot = urdf;
                 scene.add(robot);
             });
