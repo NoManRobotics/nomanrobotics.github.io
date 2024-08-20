@@ -4,38 +4,169 @@ layout: default
 background: '/img/bg-index.jpg'
 ---
 
-<!-- Home Intro
-================================================== -->
-{% if page.url == "/" %} 
-<div class="rounded mb-5 hero">
-  <div class="row align-items-center justify-content-between">
-    <div class="col-md-6">
-      <h1 class="font-weight-bold mb-4 serif-font">Let me  teach you how to become successful online</h1>
-      <p class="lead mb-4">My name is Lyam and I'm here to share with you my knowledge and experience of over 10 years of monetizing my blog.</p>
-      <a href="{{site.baseurl}}/about" class="btn btn-dark text-white px-5 btn-lg">About me</a>
+<!-- Include Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<!-- Custom CSS for Buttons and other styles -->
+<style>
+  .hero-slider {
+    position: relative;
+    height: 100%;
+    margin-bottom: 3%;
+  }
+
+  .swiper-slide {
+    position: relative;
+  }
+
+  .hidden-slide {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .bannerItem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    color: white;
+  }
+
+  .black.portal-css-jgdgk1 {
+    margin-top: 39%;
+    position: relative;
+    z-index: 2;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0); 
+  }
+
+  .buttonContent {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 45px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .buttonContent .button {
+    margin-left: 3px;
+    margin-right: 3px;
+    background: transparent;
+    border: 2px solid black;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .buttonContent .button:hover {
+    background: black;
+    color: white;
+  }
+
+  .imgContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .imgContent img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bannerItem h2,
+  .bannerItem h3 {
+    margin: 0;
+    z-index: 2;
+    position: relative;
+  }
+</style>
+
+{% if page.url == "/" %}
+<div class="swiper-container hero-slider">
+  <div class="swiper-wrapper">
+    <!-- Slide 1 -->
+    <div class="swiper-slide">
+      <div class="bannerItem" data-trackid="home-banner-Carbonara">
+        <div class="imgContent">
+          <picture>
+            <source srcSet="/assets/images/2.jpg" media="(max-width: 1200px)" />
+            <img src="/assets/images/2.jpg" alt="Carbonara" />
+          </picture>
+        </div>
+        <div class="black portal-css-jgdgk1">
+          <h2 class="title titlePc">Carbonara</h2>
+          <h5 class="desc descPc">五轴机械臂 舵机</h3>
+        </div>
+        <div class="buttonContent">
+          <div class="buttons">
+            <a class="linkItem" href="https://buy-link1" target="_blank">
+              <button class="button" type="button">立即购买</button>
+            </a>
+            <a class="linkItem" href="/details-link1">
+              <button class="button" type="button">让我看看</button>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 text-right pl-0 pl-lg-4">
-      <img class="intro" height="500" src="{{site.baseurl}}/assets/images/intro.svg">      
+    <!-- Slide 2 -->
+    <div class="swiper-slide hidden-slide">
+      <div class="bannerItem" data-trackid="home-banner-Copyme">
+        <div class="imgContent">
+          <picture>
+            <source srcSet="/assets/images/3.jpg" media="(max-width: 1200px)" />
+            <img src="/assets/images/3.jpg" alt="Copyme" />
+          </picture>
+        </div>
+        <div class="black portal-css-jgdgk1">
+          <h2 class="title titlePc">Copyme</h2>
+          <h5 class="desc descPc">七轴机械臂 步进电机</h3>
+        </div>
+        <div class="buttonContent">
+          <div class="buttons">
+            <a class="linkItem" href="https://buy-link2" target="_blank">
+              <button class="button" type="button">买买买</button>
+            </a>
+            <a class="linkItem" href="/details-link2">
+              <button class="button" type="button">让我看看</button>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <!-- Add Pagination -->
+  <div class="swiper-pagination"></div>
+  <!-- Add Navigation -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
 </div>
 {% endif %}
 
-<!-- Featured
-================================================== -->
+<!-- Featured -->
 <section class="row">
   {% for post in site.posts %}
       {% if post.featured == true %}
           <div class="col-md-4 mb-5">
-          {% include postbox.html %}
+              {% include postbox.html %}
           </div>
       {% endif %}
   {% endfor %}
-  </div>
 </section>
 
-<!-- Posts List with Sidebar (except featured)
-================================================== -->
+<!-- Posts List with Sidebar (except featured) -->
 <section class="row">
   <div class="col-sm-8">
     <div class="row">
@@ -58,3 +189,34 @@ background: '/img/bg-index.jpg'
     {% include sidebar.html %}
   </div>
 </section>
+
+<!-- Include Swiper JavaScript -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper('.hero-slider', {
+    spaceBetween: 900,
+    loop: true,
+    autoplay: {
+      delay: 9999,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    on: {
+      slideChangeTransitionEnd: function () {
+        var currentIndex = swiper.realIndex;
+        var slides = document.querySelectorAll('.swiper-slide');
+        slides.forEach(function(slide, index) {
+          if (index == 1 && slide.classList.contains('hidden-slide')) {
+            slide.classList.remove('hidden-slide');
+          }
+        });
+      }
+    }
+  });
+</script>
