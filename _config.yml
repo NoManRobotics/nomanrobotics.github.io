@@ -1,0 +1,49 @@
+title: "Affiliates"
+email: nomanrobotics@hotmail.com
+timezone: UTC
+baseurl: ""
+permalink: "/:title/"
+logo: 'assets/images/logo.png'
+favicon: 'assets/images/favicon.ico'
+author: nomanrobotics
+paginate: 30
+#disqus: 'demowebsite'
+locale: en_us
+lang: en_us
+feed_items: 10
+feed_update_period: daily
+feed_update_frequency: 1
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
+sass:
+  sass_dir: _sass
+  style: :compressed
+ganalytics: GTM-T3572P62
+
+# Authors
+authors:
+  nomanrobotics:
+    name: nomanrobotics
+    display_name: Noman Robotics
+    avatar: 'assets/images/sal.png'
+    email: nomanrobotics@hotmail.com
+    web: https://www.wowthemes.net/category/jekyll-themes/
+    twitter: https://twitter.com/wowthemesnet
+    description: "Author of Affiliates, a template available for WordPress, HTML, Ghost and Jekyll. You are currently previewing Jekyll template demo."
+  
+
+# Social
+social:
+  github: https://github.com/NoManRobotics
+  bilibili: https://www.facebook.com/bootstrapstartercom-346329609045284
+  taobao: https://world.taobao.com/
+
+# Plugins
+plugins: 
+- jekyll-paginate
+- jekyll-sitemap
+- jekyll-feed
+- jekyll-seo-tag
+- jekyll-archives
