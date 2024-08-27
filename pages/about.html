@@ -1,0 +1,305 @@
+---
+layout: page
+title:
+permalink: "/about/"
+image: 
+---
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:700');
+
+.logo {
+  margin-bottom: 5%;
+}
+
+.terminal {
+  margin-left: 1%;
+  margin-right: 1%;
+  overflow-x: hidden;
+  overflow-y: auto; 
+  height:400px;
+}
+
+#history {
+  color: rgb(0, 0, 0);
+}
+
+#ps1 {
+  color: rgb(0, 0, 0);
+}
+
+#input {
+  color: rgb(0, 0, 0);
+  display: inline;
+  outline: none;
+  visibility: visible;
+}
+
+/*
+  If you press the Insert keygxn, the vertical line caret will automatically
+  be replaced by a one-character selection.
+*/
+#input::selection {
+  color: rgb(0, 0, 0);
+  background: rgb(242, 242, 242);
+}
+
+#input:empty::before {
+  content: ' ';
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+#input:focus + #caret {
+  animation: blink 1s steps(5, start) infinite;
+}
+
+#input.noCaret + #caret {
+  visibility: hidden;
+}
+
+#caret {
+  border: 0;
+  padding: 0;
+  outline: none;
+  background-color: rgb(204, 204, 204);
+  display: inline-block;
+  font-family: "Consolas", monospace;
+}
+
+
+</style>
+
+<div class="logo">
+  <img src="/assets/images/nomanLogo.png" alt="nomanLogo" />
+</div>
+
+<div class="terminal">
+<pre id="history"></pre>
+<span id="ps1">></span>
+<div id="input" contenteditable="true"></div><button id="caret" for="input">&nbsp;</button>
+</div>
+
+<script>const history = document.getElementById('history');
+    const input = document.getElementById('input');
+    const ps1 = document.getElementById('ps1');
+    const caret = document.getElementById('caret');
+    const body = document.querySelector('body');
+    
+    body.classList.add('dos');
+    
+    let buffer = "";
+    var command = "";
+    var driveLetter = "C";
+    var blinkTimer = null;
+    var commandHistory = new Array();
+    var path = new Array();
+    var tmpCommand = "";
+    var historyPos = 0;
+    
+    function processCommand(text) {
+        if (text.indexOf(" ") != -1) {
+            var actualCommand = text.substring(0, text.indexOf(" "));
+            var parameters = text.substring(text.indexOf(" ") + 1, text.length).split(" ");
+        } else {
+            var actualCommand = text;
+            var parameters = new Array();
+        }
+        try {
+            if ((actualCommand.indexOf(":") == 1) && (actualCommand.length == 2)) {
+                driveLetter = actualCommand.charAt(0).toUpperCase();
+                return "";
+            }
+            switch (actualCommand.toLowerCase()) {
+                case "":
+                    return "";
+                
+                case "ver":
+                    return "Noman version: v0.1\n\n";
+                case "eval":
+                    return eval(parameters.join(" ")) + "\n";
+                case "cls":
+                    history.innerHTML = "";
+                case "echo":
+                    return parameters.join(" ") + "\n";
+                case "date":
+                    return Date() + "\n";
+                case "story":
+                  return printStory();
+                case "steve":
+                  return printJobs();
+                case "contact":
+                  return printContact();
+                case "help":
+                    return printHelp();
+                case "exit":
+                    return init();
+            }
+            try {
+                var output = eval(text);
+    
+                // check command returned some output
+                // (if it failed we move to the catch block, so this is only
+                // for valid javascript that doesn't return anything)
+    
+                if (output != undefined)
+                    return output + "\n";
+                else
+                    return "";
+            } catch (err) {
+                return "Bad command or filename\n";
+            }
+        } catch (err) {
+            return "Command caused an error [" + err + "]\n";
+        }
+        return "Bad command or filename\n"; //should never reach here
+    }
+
+    function printStory() {
+      var output = "";
+      output += "Our company was founded on July 29, 2024, and is committed to providing desktop solutions,\n";
+      output += "including desktop robots and IoT products.";
+      
+      return output;
+    }
+
+    function printJobs() {
+      var output = "";
+      output += "Our company pursues sustainable development, meaning that that we will put the happiness of our employees first\n";
+      output += "in the company's operation. We need to make the material and spiritual guarantee of all employees a top priority,\n";
+      output += "so the company will not expand blindly. We plan to keep the team size to no more than 15 people in the future\n"; 
+      output += "to ensure this goal. Your joining means that you can take on at least 1/15 of the responsibility.\n"; 
+      
+      output += "--------------------------------------------------------------------------------------------------------------------\n"
+      output += "We hire part-time staff\n";
+      output += "Embedded Engineer with requirements of:\n";
+      output += " 1. C/C++, Python\n 2. I2C and CAN communication\n 3. Postgraduate\n";
+      output += "Software Engineer with experiences in:\n";
+      output += " 1. Customtkinter in all platforms\n 2. Flutter app development.\n";
+      
+      return output;
+    }
+    
+    function printHelp() {
+        var output = "";
+        output += "Supported commands are:\n";
+        output += "story\n";
+        output += "steve\n";
+        output += "contact\n";
+        output += " help\n";
+        output += " ver\n";
+        output += " echo [text]\n";
+        output += " cls\n";
+        output += " eval [javascript code]\n\n";
+    
+        return output;
+    }
+    
+    function println(text) {
+      const line = document.createElement('div');
+      //let output = text.replace(/\n/g, "<br />");
+      line.innerHTML = `${text}`;
+    
+      history.appendChild(line);
+    }
+    
+    function init() {
+        println("Noman Robotics was established in 2024.07.29");
+        println("* Type [story] to know more about our company");
+        println("* Type [steve] to find your jobs");
+        println("* Type [contact] to get in touch");
+        println("* Type [help] to find supported args");
+      }
+    
+    
+    function focusAndMoveCursorToTheEnd(e) {  
+      input.focus();
+      
+      const range = document.createRange();
+      const selection = window.getSelection();
+      const { childNodes } = input;
+      const lastChildNode = childNodes && childNodes.length - 1;
+      
+      range.selectNodeContents(lastChildNode === -1 ? input : childNodes[lastChildNode]);
+      range.collapse(false);
+    
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+    
+    function handleCommand(command) {
+      const line = document.createElement('div');
+      
+      line.textContent = `> ${command}`;
+    
+      history.appendChild(line);
+    }
+    
+    // Every time the selection changes, add or remove the .noCursor
+    // class to show or hide, respectively, the bug square cursor.
+    // Note this function could also be used to enforce showing always
+    // a big square cursor by always selecting 1 chracter from the current
+    // cursor position, unless it's already at the end, in which case the
+    // #cursor element should be displayed instead.
+    document.addEventListener('selectionchange', () => {
+      if (document.activeElement.id !== 'input') return;
+      
+      const range = window.getSelection().getRangeAt(0);
+      const start = range.startOffset;
+      const end = range.endOffset;
+      const length = input.textContent.length;
+      
+      if (end < length) {
+        input.classList.add('noCaret');
+      } else {
+        input.classList.remove('noCaret');
+      }
+    });
+    
+    input.addEventListener('input', () => {    
+      // If we paste HTML, format it as plain text and break it up
+      // input individual lines/commands:
+      if (input.childElementCount > 0) {
+        const lines = input.innerText.replace(/\n$/, '').split('\n');
+        const lastLine = lines[lines.length - 1];
+        
+        for (let i = 0; i <= lines.length - 2; ++i) {
+          handleCommand(lines[i]);
+        }
+      
+        input.textContent = lastLine;
+        
+        focusAndMoveCursorToTheEnd();
+      }
+      
+      // If we delete everything, display the square caret again:
+      if (input.innerText.length === 0) {
+        input.classList.remove('noCaret');
+      }  
+    });
+    
+    document.addEventListener('keydown', (e) => {   
+      // If some key is pressed outside the input, focus it and move the cursor
+      // to the end:
+      if (e.target !== input) focusAndMoveCursorToTheEnd();
+    });
+    
+    input.addEventListener('keydown', (e) => {    
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleCommand(input.textContent);
+        println(processCommand(input.textContent));    
+        input.textContent = '';
+        //focusAndMoveCursorToTheEnd();
+      }
+    });
+    // Set the focus to the input so that you can start typing straigh away:
+    //input.focus();
+    
+    init();
+    
+    </script>

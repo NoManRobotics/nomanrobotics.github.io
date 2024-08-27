@@ -1,19 +1,16 @@
 # Top Menu
 topmenu:
 
-- title: Home
-  url: ""
 
-- title: About
+- title: 产品支持
+  url: "product/"
+
+- title: 软件支持
+  url: software/
+
+- title: 关于我们
   url: "about/"
-
-- title: Contact
-  url: "contact/"
-
-- title: Get this theme  
-  url: https://bootstrapstarter.com/template-affiliates-bootstrap-jekyll/
   class: "ml-2 btn btn-dark text-white px-3"
-  external: true
 
 # Footer Menu
 footermenu:
@@ -24,9 +21,8 @@ footermenu:
 - title: Privacy Policy
   url: "privacy-policy/"
 
-- title: Contact
+- title: Bussiness
   url: "contact/"
 
 - title: Download
-  url: https://bootstrapstarter.com/template-affiliates-bootstrap-jekyll/  
-  external: true
+  url: software 

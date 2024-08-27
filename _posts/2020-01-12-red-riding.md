@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Red Riding Hood"
+title:  "定制您需要的物联产品"
 author: sal
 categories: [ Jekyll, tutorial ]
 image: assets/images/3.jpg

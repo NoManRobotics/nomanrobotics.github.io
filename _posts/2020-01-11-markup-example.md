@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Markdown Example"
+title:  "激励计划"
 author: john
 categories: [ Jekyll, tutorial ]
 image: assets/images/6.jpg
