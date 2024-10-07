@@ -67,6 +67,17 @@ body {
         color: white;
     }
 
+    .buttonContentMain .slider-button.disabled-button {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+        background-color: rgba(0, 0, 0, 0.1); /* 添加一个轻微的背景色 */
+    }
+    
+    .buttonContentMain .slider-button.disabled-button:hover {
+        background: transparent;
+        color: inherit;
+    }
 
     .imgContent {
         position: absolute;
@@ -90,4 +101,15 @@ body {
         z-index: 2;
         position: relative;
     }
+
+    .techsupport-container {
+        display: flex;
+        min-height: calc(100vh - 70px); /* 调整这个值以匹配您的 header 高度 */
+      }
+      
+      @media (max-width: 991px) {
+        .techsupport-container {
+          display: block;
+        }
+      }
 }

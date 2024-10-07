@@ -2,11 +2,11 @@
 topmenu:
 
 
-- title: 产品支持
+- title: 产品列表
   url: "product/"
 
-- title: 软件支持
-  url: software/
+- title: 技术支持
+  url: techsupport/
 
 - title: 关于我们
   url: "about/"

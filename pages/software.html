@@ -1,6 +1,97 @@
 ---
 layout: page
-title: 软件支持
-permalink: "/software/"
+title:
+permalink: "/techsupport/"
 comments: false
 ---
+<!-- 添加导航切换按钮 -->
+<body data-spy="scroll" data-target=".idocs-navigation" data-offset="125"></body>
+
+<div class="techsupport-container">
+  <!-- Sidebar Navigation -->
+  <div class="idocs-navigation bg-light">
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link active" href="#item_1">Carbonara</a>
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" href="#item_1_1">用户手册</a></li>
+          <li class="nav-item"><a class="nav-link" href="#item_1_2">软件下载</a></li>
+          <li class="nav-item"><a class="nav-link" href="#item_1_3">ROS</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="#item_2">Item 2</a>
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" href="#item_2_1">Sub Item 2.1</a></li>
+          <li class="nav-item"><a class="nav-link" href="#item_2_2">Sub Item 2.2</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="#item_3">Change Log</a>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- Docs Content -->
+  <div class="idocs-content">
+    <div class="container"> 
+      <!-- Item 1 -->
+      <section id="item_1">
+        <h2>Carbonara</h2>
+        <p>...</p>
+      </section>
+      <hr class="divider">
+      
+      <!-- Item 1.1 -->
+      <section id="item_1_1">
+        <h2>用户手册</h2>
+        <p>...</p>
+      </section>
+      <hr class="divider">
+      
+      <!-- Item 1.2 -->
+      <section id="item_1_2">
+        <h2>软件下载</h2>
+        <p>...</p>
+      </section>
+
+      <!-- Item 1.3 -->
+      <section id="item_1_3">
+        <h2>ROS</h2>
+        <p>...</p>
+      </section>
+      <hr class="divider">
+      
+      <!-- Item 2 -->
+      <section id="item_2">
+        <h2>Item 2</h2>
+        <p>...</p>
+      </section>
+      <hr class="divider">
+      
+      <!-- Item 2.1 -->
+      <section id="item_2_1">
+        <h2>Item 2.1</h2>
+        <p>...</p>
+      </section>
+      <hr class="divider">
+      
+      <!-- Item 2.2 -->
+      <section id="item_2_2">
+        <h2>Item 2.2</h2>
+        <p>...</p>
+      </section>
+      <hr class="divider">
+
+      <section id="item_3">
+        <h2>Change Log</h2>
+        <p>...</p>
+      </section>
+      <hr class="divider">
+    </div>
+  </div>
+</div>
+
+<script>
+  // 添加导航切换功能
+  document.querySelector('.nav-toggle').addEventListener('click', function() {
+    document.querySelector('.idocs-navigation').classList.toggle('active');
+  });
+</script>
