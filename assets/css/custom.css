@@ -107,9 +107,34 @@ body {
         min-height: calc(100vh - 70px); /* 调整这个值以匹配您的 header 高度 */
       }
       
-      @media (max-width: 991px) {
+      @media (max-width: 767px) {
         .techsupport-container {
-          display: block;
+            position: relative;
         }
-      }
+        .idocs-navigation {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            height: 100%;
+            transition: left 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .idocs-navigation.active {
+            left: 0;
+        }
+        .idocs-content {
+            margin-left: 0;
+        }
+        .nav-toggle {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1001;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    }
 }

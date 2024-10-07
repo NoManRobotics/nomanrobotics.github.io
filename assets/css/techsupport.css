@@ -562,6 +562,7 @@ hr {
 /*=== 3.2 Docs Content ===*/
 .idocs-content {
   position: relative;
+  flex: 1;
   margin-left: 10px;
   padding: 0px 50px 50px;
   min-height: 750px;
