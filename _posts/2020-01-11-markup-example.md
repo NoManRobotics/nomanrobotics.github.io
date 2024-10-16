@@ -2,25 +2,46 @@
 layout: post
 title:  "激励计划"
 author: john
-categories: [ Jekyll, tutorial ]
+categories: [ 激励 ]
 image: assets/images/6.jpg
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated. Something.
+# 机械臂用户创新激励计划
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+为了鼓励我们尊敬的机械臂用户发挥创意并推动产品创新，我们特推出以下激励计划：
 
-Jekyll also offers powerful support for code snippets:
+## 1. 零部件优化竞赛
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+我们将开放一个小型零部件的3D模型，邀请用户参与升级和优化。
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+- 参与方式：用户可下载该零部件模型，进行改进设计。
+- 评选标准：性能提升、创新性、实用性等。
+- 奖励：
+  - 一等奖：最新款机械臂一台
+  - 二等奖：核心部件升级包
+  - 三等奖：专属定制工具套装
 
-[jekyll-docs]: http://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+## 2. 创意应用场景大赛
+
+我们鼓励用户探索机械臂在各行各业中的创新应用。
+
+- 参与方式：用户提交使用我们机械臂的创意场景方案或实际应用案例。
+- 评选标准：创新性、实用价值、社会影响等。
+- 奖励：
+  - 最佳创意奖：万元奖励
+  - 最佳实践奖：免费获得下一代机械臂产品
+  - 人气奖：一年免费维护服务
+
+## 3. 开发者挑战赛
+
+面向专业开发者，鼓励他们为我们的机械臂开发新功能或应用程序。
+
+- 参与方式：开发者提交基于我们API的应用程序或新功能。
+- 评选标准：功能创新性、用户体验、技术实现难度等。
+- 奖励：
+  - 冠军：高额奖金 + 优先合作开发机会
+  - 亚军：开发者版机械臂 + 技术支持服务
+  - 季军：专业开发工具包 + 培训课程
+
+我们相信，通过这些激励计划，能够充分调动用户的创造力，推动我们的产品不断进步，同时为用户带来更多价值和机遇。期待看到您的精彩表现！
+
+参与方式及详细规则请关注我们的官方网站或联系客户服务团队。让我们一起，用创新推动未来！

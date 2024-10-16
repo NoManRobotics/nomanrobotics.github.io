@@ -1,16 +1,95 @@
 ---
 layout: post
-title:  "定制您需要的物联产品"
+title:  "社区和交流"
 author: sal
-categories: [ Jekyll, tutorial ]
+categories: [ 社区 ]
 image: assets/images/3.jpg
 ---
-The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter. 
 
-An 1868 Prang catalogue would later claim that such “books in the shape of a regular paper Doll… originated with us”. 
+<div class="community-container">
+  <h2>欢迎加入我们的机械臂社区!</h2>
+  
+  <section class="forum-section">
+    <h3>讨论论坛</h3>
+    <p>在我们的论坛上与其他用户交流经验、分享想法、寻求帮助。</p>
+    <a href="#" class="btn">进入论坛</a>
+  </section>
 
-> It would seem the claim could also extend to die cut books in general, as we can’t find anything sooner, but do let us know in the comments if you have further light to shed on this! Such books are, of course, still popular in children’s publishing today, though the die cutting is not now limited to mere outlines, as evidenced in a beautiful 2014 version of the same Little Red Riding Hood story. 
+  <section class="events-section">
+    <h3>线下活动</h3>
+    <p>参加我们的线下聚会,亲身体验最新的机械臂技术。</p>
+    <ul>
+      <li>2023年7月15日 - 上海机械臂技术交流会</li>
+      <li>2023年8月20日 - 北京机器人展览会</li>
+    </ul>
+  </section>
 
-The die cut has also been employed in the non-juvenile sphere as well, a recent example being Jonathan Safran Foer’s ambitious Tree of Codes. 
+  <section class="social-media">
+    <h3>社交媒体</h3>
+    <p>关注我们的社交媒体账号,获取最新资讯:</p>
+    <ul>
+      <li><a href="#">小红书</a></li>
+      <li><a href="#">Bilibili</a></li>
+    </ul>
+  </section>
 
-As for this particular rendition of Charles Perrault’s classic tale, the text and design is by Lydia Very (1823-1901), sister of Transcendentalist poet Jones Very. The gruesome ending of the original — which sees Little Red Riding Hood being gobbled up as well as her grandmother — is avoided here, the gore giving way to the less bloody aims of the morality tale, and the lesson that one should not disobey one’s mother.
+  <section class="feedback">
+  <h3>反馈与建议</h3>
+  <p>我们重视您的意见!请填写以下表单向我们提供反馈。</p>
+  <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+    <label for="name">姓名:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">邮箱:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">留言:</label>
+    <textarea id="message" name="message" required></textarea>
+
+    <button type="submit">提交</button>
+  </form>
+</section>
+
+<style>
+  .community-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .community-container h2 {
+    text-align: center;
+    color: #333;
+  }
+  .community-container section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  .community-container h3 {
+    color: #2c3e50;
+  }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  form input, form textarea {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  form button {
+    padding: 10px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+</style>
