@@ -15,15 +15,6 @@ image: assets/images/3.jpg
     <a href="#" class="btn">进入论坛</a>
   </section>
 
-  <section class="events-section">
-    <h3>线下活动</h3>
-    <p>参加我们的线下聚会,亲身体验最新的机械臂技术。</p>
-    <ul>
-      <li>2023年7月15日 - 上海机械臂技术交流会</li>
-      <li>2023年8月20日 - 北京机器人展览会</li>
-    </ul>
-  </section>
-
   <section class="social-media">
     <h3>社交媒体</h3>
     <p>关注我们的社交媒体账号,获取最新资讯:</p>

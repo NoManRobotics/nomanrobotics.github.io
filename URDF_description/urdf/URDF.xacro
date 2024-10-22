@@ -1,0 +1,202 @@
+<?xml version="1.0" ?>
+<robot name="URDF" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find URDF_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find URDF_description)/urdf/URDF.trans" />
+<xacro:include filename="$(find URDF_description)/urdf/URDF.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.02757835168065654 -0.0012714294173644097 0.022367518944238496" rpy="0 0 0"/>
+    <mass value="1.651301058813082"/>
+    <inertia ixx="0.001672" iyy="0.004335" izz="0.005152" ixy="-4.5e-05" iyz="2e-06" ixz="0.000107"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Joint1_v3_1">
+  <inertial>
+    <origin xyz="0.0004961970327357381 -0.0006633192568900881 0.020722890370871286" rpy="0 0 0"/>
+    <mass value="0.5225966320733053"/>
+    <inertia ixx="0.000471" iyy="0.000299" izz="0.000582" ixy="-0.0" iyz="6e-06" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.000121 0.001909 -0.038755" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/Joint1_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.000121 0.001909 -0.038755" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/Joint1_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Joint2_v2_1">
+  <inertial>
+    <origin xyz="0.05014320929767556 -0.021322379588068822 -0.00013894896909531773" rpy="0 0 0"/>
+    <mass value="0.6716055837586975"/>
+    <inertia ixx="0.000573" iyy="0.000828" izz="0.001186" ixy="-4.7e-05" iyz="-2e-06" ixz="2e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.00013 -0.021091 -0.0756" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/Joint2_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.00013 -0.021091 -0.0756" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/Joint2_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Joint3_v3_1">
+  <inertial>
+    <origin xyz="-0.028957797251960016 -0.02280934199022625 0.026972120936257574" rpy="0 0 0"/>
+    <mass value="0.528254890846866"/>
+    <inertia ixx="0.00044" iyy="0.000733" izz="0.000785" ixy="1e-05" iyz="-1.9e-05" ixz="0.000122"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.08987 -0.021091 -0.0756" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/Joint3_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.08987 -0.021091 -0.0756" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/Joint3_v3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Joint4_v2_1">
+  <inertial>
+    <origin xyz="-0.0028447177224447872 -0.022856832574041672 -7.576042054535659e-07" rpy="0 0 0"/>
+    <mass value="0.2379240133342924"/>
+    <inertia ixx="8.6e-05" iyy="3.5e-05" izz="8.6e-05" ixy="-4e-06" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.007167 -0.021591 -0.1111" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/Joint4_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.007167 -0.021591 -0.1111" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/Joint4_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_jaw_1">
+  <inertial>
+    <origin xyz="-0.008029717819033022 0.016233468870599073 -0.00020973773489395275" rpy="0 0 0"/>
+    <mass value="0.02684775454507079"/>
+    <inertia ixx="3e-06" iyy="4e-06" izz="1e-06" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.010333 0.023909 -0.1111" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/left_jaw_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.010333 0.023909 -0.1111" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/left_jaw_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_jaw_1">
+  <inertial>
+    <origin xyz="-0.008029685775077193 -0.0162340079404132 0.00020964197023824738" rpy="0 0 0"/>
+    <mass value="0.026847764745505966"/>
+    <inertia ixx="3e-06" iyy="4e-06" izz="1e-06" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.010333 -0.021091 -0.1111" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/right_jaw_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.010333 -0.021091 -0.1111" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://URDF_description/meshes/right_jaw_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute1" type="revolute">
+  <origin xyz="-0.000121 -0.001909 0.038755" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="Joint1_v3_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Revolute2" type="revolute">
+  <origin xyz="-9e-06 0.023 0.036845" rpy="0 0 0"/>
+  <parent link="Joint1_v3_1"/>
+  <child link="Joint2_v2_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <limit upper="3.141593" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Revolute3" type="revolute">
+  <origin xyz="0.09 0.0 0.0" rpy="0 0 0"/>
+  <parent link="Joint2_v2_1"/>
+  <child link="Joint3_v3_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <limit upper="6.283185" lower="3.141593" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Revolute4" type="revolute">
+  <origin xyz="-0.082703 0.0005 0.0355" rpy="0 0 0"/>
+  <parent link="Joint3_v3_1"/>
+  <child link="Joint4_v2_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Slider5" type="prismatic">
+  <origin xyz="-0.0175 -0.0455 0.0" rpy="0 0 0"/>
+  <parent link="Joint4_v2_1"/>
+  <child link="left_jaw_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <limit upper="0.006" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Slider6" type="prismatic">
+  <origin xyz="-0.0175 -0.0005 0.0" rpy="0 0 0"/>
+  <parent link="Joint4_v2_1"/>
+  <child link="right_jaw_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+  <limit upper="0.006" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+</robot>
