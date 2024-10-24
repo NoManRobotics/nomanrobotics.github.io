@@ -1,6 +1,290 @@
 ---
 layout: page
-title: 产品
+title: 
 permalink: "/product/"
 comments: false
 ---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbonara 教育机械臂 - 开启机器人学习之旅</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 导航栏 */
+        header {
+            background-color: #000;
+            width: 100%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-right: 1rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.75rem;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #333;
+            border-radius: 4px;
+        }
+
+        /* 产品选择下拉菜单 */
+        .product-select {
+            position: relative;
+            display: inline-block;
+        }
+
+        .product-select select {
+            appearance: none;
+            background-color: #000;
+            color: #fff;
+            padding: 0.5rem 2rem 0.5rem 1rem;
+            font-size: 0.9rem;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .product-select::after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+            color: #fff;
+            pointer-events: none;
+        }
+
+        /* 主要内容 */
+        main {
+            padding-top: 2rem;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        /* 英雄区 */
+        .hero {
+            background-color: #f5f5f5;
+            padding: 6rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 600;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 特性区 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 规格区 */
+        .specs ul {
+            list-style-type: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .specs li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* 购买区 */
+        .buy {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #fff;
+            color: #000;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            .product-select {
+                margin-top: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="product-select">
+                <select>
+                    <option value="">选择产品</option>
+                    <option value="carbonara">Carbonara 教育机械臂</option>
+                </select>
+            </div>
+            <ul>
+                <li><a href="#home">首页</a></li>
+                <li><a href="#features">特性</a></li>
+                <li><a href="#specs">规格</a></li>
+                <li><a href="#buy">购买</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>Carbonara 教育机械臂</h1>
+            <p class="tagline">开启机器人学习之旅，激发创新潜能</p>
+            <img src="/assets/images/5.jpg" alt="Carbonara 教育机械臂" class="product-image">
+        </section>
+
+        <section id="features" class="features">
+            <h2>教育特性</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>多语言支持</h3>
+                    <p>支持Python、ROS等多种编程语言，适合不同层次的学习需求</p>
+                </div>
+                <div class="feature-item">
+                    <h3>软件集成</h3>
+                    <p>兼容RobotDK等主流软件，轻松进行仿真和编程</p>
+                </div>
+                <div class="feature-item">
+                    <h3>运动学学习</h3>
+                    <p>内置正逆运动学模型，帮助学生深入理解机器人运动原理</p>
+                </div>
+                <div class="feature-item">
+                    <h3>易于扩展</h3>
+                    <p>丰富的扩展接口，支持各种传感器和工具的连接</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="specs" class="specs">
+            <h2>技术规格</h2>
+            <ul>
+                <li>有效负载: 500g</li>
+                <li>工作半径: 350mm</li>
+                <li>重复定位精度: ±0.5mm</li>
+                <li>自由度: 6</li>
+                <li>控制系统: 开源控制器，支持Arduino, ESP32编程</li>
+                <li>通信接口: USB, Wi-Fi</li>
+                <li>编程支持: Python, C++, ROS, Arduino, ESP32</li>
+                <li>软件兼容: RobotDK, MATLAB</li>
+            </ul>
+        </section>
+
+        <section id="buy" class="buy">
+            <h2>立即购买</h2>
+            <p class="price">￥9,999 起</p>
+            <a href="#" class="cta-button">预订 Carbonara 教育机械臂</a>
+        </section>
+    </main>
+</body>
+</html>

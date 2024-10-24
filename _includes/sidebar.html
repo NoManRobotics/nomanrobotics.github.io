@@ -1,8 +1,6 @@
 <!-- Go to your Mailchimp account/Lists/Sign Up Forms/Embedded forms and replace the code below with your own  -->
 
 
-
-
 <body class="flex items-center justify-center w-screen h-screen p-10 space-x-6 bg-gray-300">
 
 	
@@ -11,10 +9,11 @@
   --background: #ffffff;
   --navbar-width: 244px;
   --navbar-width-min: 80px;
-  --navbar-dark-primary: #18283b;
-  --navbar-dark-secondary: #2c3e50;
-  --navbar-light-primary: #f5f6fa;
+  --navbar-dark-primary: #ffffff;
+  --navbar-dark-secondary: #000000;
+  --navbar-light-primary: #f5faf7;
   --navbar-light-secondary: #8392a5;
+  --navbar-btn-hover: #0e9f06;
 }
 
 
@@ -63,7 +62,7 @@
   position: absolute;
   left: 9%;
   
-  height: calc(74.7%);
+  height: calc(81%);
   background: var(--navbar-dark-primary);
   border-radius: 16px;
   display: flex;
@@ -213,49 +212,49 @@ label[for=nav-toggle] {
   transition: min-width 0.2s;
 }
 .nav-button:nth-of-type(1):hover {
-  color: var(--navbar-dark-primary);
+  color: var(--navbar-btn-hover);
 }
 .nav-button:nth-of-type(1):hover ~ #nav-content-highlight {
   top: 16px;
 }
 .nav-button:nth-of-type(2):hover {
-  color: var(--navbar-dark-primary);
+  color: var(--navbar-btn-hover);
 }
 .nav-button:nth-of-type(2):hover ~ #nav-content-highlight {
   top: 70px;
 }
 .nav-button:nth-of-type(3):hover {
-  color: var(--navbar-dark-primary);
+  color: var(--navbar-btn-hover);
 }
 .nav-button:nth-of-type(3):hover ~ #nav-content-highlight {
   top: 124px;
 }
 .nav-button:nth-of-type(4):hover {
-  color: var(--navbar-dark-primary);
+  color: var(--navbar-btn-hover);
 }
 .nav-button:nth-of-type(4):hover ~ #nav-content-highlight {
   top: 178px;
 }
 .nav-button:nth-of-type(5):hover {
-  color: var(--navbar-dark-primary);
+  color: var(--navbar-btn-hover);
 }
 .nav-button:nth-of-type(5):hover ~ #nav-content-highlight {
   top: 232px;
 }
 .nav-button:nth-of-type(6):hover {
-  color: var(--navbar-dark-primary);
+  color: var(--navbar-btn-hover);
 }
 .nav-button:nth-of-type(6):hover ~ #nav-content-highlight {
   top: 286px;
 }
 .nav-button:nth-of-type(7):hover {
-  color: var(--navbar-dark-primary);
+  color: var(--navbar-btn-hover);
 }
 .nav-button:nth-of-type(7):hover ~ #nav-content-highlight {
   top: 340px;
 }
 .nav-button:nth-of-type(8):hover {
-  color: var(--navbar-dark-primary);
+  color: var(--navbar-btn-hover);
 }
 .nav-button:nth-of-type(8):hover ~ #nav-content-highlight {
   top: 394px;
@@ -264,91 +263,6 @@ label[for=nav-toggle] {
 #nav-bar .fas {
   min-width: 3rem;
   text-align: center;
-}
-
-#nav-footer {
-  position: relative;
-  width: var(--navbar-width);
-  height: 54px;
-  background: var(--navbar-dark-secondary);
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
-  transition: width 0.2s, height 0.2s;
-}
-
-#nav-footer-heading {
-  position: relative;
-  width: 100%;
-  height: 54px;
-  display: flex;
-  align-items: center;
-}
-
-#nav-footer-avatar {
-  position: relative;
-  margin: 11px 0 11px 16px;
-  left: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  overflow: hidden;
-  transform: translate(0);
-  transition: 0.2s;
-}
-#nav-footer-avatar img {
-  height: 100%;
-}
-
-#nav-footer-titlebox {
-  position: relative;
-  margin-left: 16px;
-  width: 10px;
-  display: flex;
-  flex-direction: column;
-  transition: opacity 1s;
-}
-
-#nav-footer-subtitle {
-  color: var(--navbar-light-secondary);
-  font-size: 0.6rem;
-}
-
-#nav-footer-toggle:checked + #nav-footer {
-  height: 30%;
-  min-height: 54px;
-}
-#nav-footer-toggle:checked + #nav-footer label[for=nav-footer-toggle] {
-  transform: rotate(180deg);
-}
-
-label[for=nav-footer-toggle] {
-  position: absolute;
-  right: 0;
-  width: 3rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.2s, opacity 0.2s;
-}
-
-#nav-footer-content {
-  margin: 0 16px 16px 16px;
-  border-top: solid 1px var(--navbar-light-secondary);
-  padding: 16px 0;
-  color: var(--navbar-light-secondary);
-  font-size: 0.8rem;
-  overflow: auto;
-}
-#nav-footer-content::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-#nav-footer-content::-webkit-scrollbar-thumb {
-  border-radius: 99px;
-  background-color: #D62929;
 }
 </style>
 
@@ -375,17 +289,6 @@ label[for=nav-footer-toggle] {
     <hr/>
     <div class="nav-button"><i class="fas fa-cube" ></i><span><a href="/warrenty">售后政策</a></span></div>
     <div id="nav-content-highlight"></div>
-  </div>
-  <input id="nav-footer-toggle" type="checkbox"/>
-  <div id="nav-footer">
-    <div id="nav-footer-heading">
-      <div id="nav-footer-avatar"><img src="https://gravatar.com/avatar/4474ca42d303761c2901fa819c4f2547"/></div>
-      <div id="nav-footer-titlebox"><a id="nav-footer-title" target="_blank">NomanRobotics</a></div>
-      <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
-    </div>
-    <div id="nav-footer-content">
-      <Lorem>Noman needs to work!</Lorem>
-    </div>
   </div>
 </div>
 <!-- partial -->
