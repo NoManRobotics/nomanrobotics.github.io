@@ -217,6 +217,24 @@ comments: false
                 grid-template-columns: 1fr;
             }
         }
+
+        /* 新增：平台支持区域样式 */
+        .platform-support {
+            background-color: #f0f0f0;
+            padding: 3rem 2rem;
+        }
+
+        .platform-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .platform-icons img {
+            width: 64px;
+            height: 64px;
+        }
     </style>
 </head>
 <body>
@@ -240,20 +258,20 @@ comments: false
     <main>
         <section id="home" class="hero">
             <h1>Carbonara 教育机械臂</h1>
-            <p class="tagline">开启机器人学习之旅，激发创新潜能</p>
+            <p class="tagline">您的第一台教育机械臂, 无需太复杂</p>
             <img src="/assets/images/5.jpg" alt="Carbonara 教育机械臂" class="product-image">
         </section>
 
         <section id="features" class="features">
-            <h2>教育特性</h2>
+            <h2>生态</h2>
             <div class="feature-grid">
                 <div class="feature-item">
                     <h3>多语言支持</h3>
-                    <p>支持Python、ROS等多种编程语言，适合不同层次的学习需求</p>
+                    <p>支持Python、C++等多种编程语言，适合不同层次的学习需求</p>
                 </div>
                 <div class="feature-item">
                     <h3>软件集成</h3>
-                    <p>兼容RobotDK等主流软件，轻松进行仿真和编程</p>
+                    <p>兼容ROS, RobotDK等主流软件, 轻松进行仿真和编程</p>
                 </div>
                 <div class="feature-item">
                     <h3>运动学学习</h3>
@@ -263,6 +281,48 @@ comments: false
                     <h3>易于扩展</h3>
                     <p>丰富的扩展接口，支持各种传感器和工具的连接</p>
                 </div>
+                <div class="feature-item">
+                    <h3>上位机控制</h3>
+                    <p>提供专业的上位机软件，方便控制和编程</p>
+                </div>
+                <div class="feature-item">
+                    <h3>电位器同步控制</h3>
+                    <p>通过电位器实现直观的机械臂姿态控制</p>
+                </div>
+                <div class="feature-item">
+                    <h3>视觉控制</h3>
+                    <p>集成视觉系统，实现基于图像的机械臂控制和图像处理</p>
+                </div>
+                <div class="feature-item">
+                    <h3>校准功能</h3>
+                    <p>内置校准程序，确保机械臂精确定位</p>
+                </div>
+                <div class="feature-item">
+                    <h3>GPIO接口</h3>
+                    <p>提供丰富的GPIO接口, 支持多种外部设备连接</p>
+                </div>
+                <div class="feature-item">
+                    <h3>ROS支持</h3>
+                    <p>完全兼容ROS系统, 方便进行高级机器人开发</p>
+                </div>
+                <div class="feature-item">
+                    <h3>G-code支持</h3>
+                    <p>支持G-code指令, 可用于3D打印和CNC应用</p>
+                </div>
+                <div class="feature-item">
+                    <h3>扩展末端执行器</h3>
+                    <p>支持多种末端执行器，如夹爪、吸盘等</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="platform-support">
+            <h2>全平台开发支持</h2>
+            <p>Carbonara 教育机械臂支持在Windows、macOS和Linux平台上进行开发</p>
+            <div class="platform-icons">
+                <img src="/assets/images/windows.png" alt="Windows" style="width: 50px; height: 50px;">
+                <img src="/assets/images/macos.png" alt="macOS" style="width: 45px; height: 45px;">
+                <img src="/assets/images/linux.png" alt="Linux" style="width: 45px; height: 45px;">
             </div>
         </section>
 
@@ -270,9 +330,9 @@ comments: false
             <h2>技术规格</h2>
             <ul>
                 <li>有效负载: 500g</li>
-                <li>工作半径: 350mm</li>
+                <li>工作半径: 150mm</li>
                 <li>重复定位精度: ±0.5mm</li>
-                <li>自由度: 6</li>
+                <li>自由度: 5</li>
                 <li>控制系统: 开源控制器，支持Arduino, ESP32编程</li>
                 <li>通信接口: USB, Wi-Fi</li>
                 <li>编程支持: Python, C++, ROS, Arduino, ESP32</li>
@@ -286,5 +346,9 @@ comments: false
             <a href="#" class="cta-button">预订 Carbonara 教育机械臂</a>
         </section>
     </main>
+
+    <footer>
+        <p>&copy; 2023 Carbonara 教育机械臂. 保留所有权利。</p>
+    </footer>
 </body>
 </html>
