@@ -5,6 +5,63 @@ permalink: "/techsupport/"
 comments: false
 ---
 
+<style>
+/* 参数表格 */
+.param-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    background: #fff;
+}
+
+.param-table th,
+.param-table td {
+    padding: 12px 15px;
+    border: 1px solid #e9ecef;
+}
+
+.param-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+/* 代码块 */
+pre {
+    background: #f8f9fa;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 15px 0;
+    overflow-x: auto;
+    position: relative;
+}
+
+code {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 14px;
+}
+
+/* 警告框 */
+.alert {
+    padding: 15px 20px;
+    margin: 15px 0;
+    border-radius: 4px;
+    border-left: 4px solid;
+}
+
+.alert-warning {
+    background: #fff3cd;
+    border-left-color: #ffc107;
+    color: #856404;
+}
+
+.alert-info {
+    background: #d1ecf1;
+    border-left-color: #17a2b8;
+    color: #0c5460;
+}
+
+</style>
+
 <body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
 
 <div class="techsupport-container">
@@ -40,7 +97,46 @@ comments: false
             <!-- Item 1 -->
             <section id="item_1">
                 <h1>Carbonara</h1>
-                <p>Carbonara是一款五轴舵机机械臂,它的制造相对于工业机械臂来说成本较低。但是作为教育级用途,它能够快速上手并让大家了解机械臂的完整工作流程。</p>
+                <p>Carbonara是一款五轴舵机机械臂,它的制造相对于工业机械臂来说成本较低。但是作为教育级用途, 我们非常希望大家能够通过Carbonara快速上手并了解机械臂的完整工作流程。</p>
+                <img src="/assets/images/robot_arm_system.png" alt="Carbonara机械臂系统架构" class="img-fluid" style="max-width: 450px; display: block; margin-left: auto; margin-right: auto; padding: 20px 0;">
+                <p>工业机械臂平台架构主要包括机械臂本体、电源供应、控制器、传感器和中央处理器（电脑）。我们的教育机械臂展现了工业机械臂的核心组成部分，但采用了更经济实惠的替代方案：</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>系统组成</th>
+                            <th>工业机械臂</th>
+                            <th>Carbonara教育机械臂</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>电源系统</td>
+                            <td>三相高压电源(380V/220V)驱动大功率伺服电机</td>
+                            <td>6V直流电源驱动舵机</td>
+                        </tr>
+                        <tr>
+                            <td>通讯协议</td>
+                            <td>CAN总线或EtherCAT等工业级通讯协议</td>
+                            <td>I2C协议</td>
+                        </tr>
+                        <tr>
+                            <td>控制系统</td>
+                            <td>专业的PLC或工控机</td>
+                            <td>ESP32微控制器</td>
+                        </tr>
+                        <tr>
+                            <td>驱动系统</td>
+                            <td>伺服电机、减速器和专业驱动器</td>
+                            <td>集成驱动电路的数字舵机</td>
+                        </tr>
+                        <tr>
+                            <td>计算机系统</td>
+                            <td>专业优化的操作系统</td>
+                            <td>普通家用电脑</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
                 <p>本页面将指导您完成从环境准备到实际操作Carbonara的各项流程。</p>
                 <h4>快速导航：</h4>
                 <ul>
@@ -73,10 +169,10 @@ comments: false
                     <li>工作电压: 6V DC</li>
                     <li>自由度: 5轴</li>
                     <li>主要材料: ABS (FDM)</li>
-                    <li>通讯方式: USB串口</li>
+                    <li>通讯方式: USB串口/支持wifi,蓝牙拓展</li>
                     <li>电机: 高精度金属舵机</li>
                     <li>最大负载: 500g</li>
-                    <li>工作范围: 半径约35cm</li>
+                    <li>工作范围: 半径约150mm</li>
                 </ul>
 
                 <h4>2. 装配</h4>
@@ -226,16 +322,171 @@ comments: false
             <hr class="divider">
       
             <!-- Controller -->
-            <section id="controller">
-                <h3>Controller</h3>
-                <p>这里是关于Controller的内容，包括其功能、使用方法和注意事项...</p>
+            <section id="controller" class="doc-section">
+                <h3>Controller 控制器</h3>
+                <div class="alert alert-info">
+                    <p>Controller是Carbonara示教器的核心控制模块，提供直观的图形界面来控制机械臂。</p>
+                </div>
+
+                <h4>连接控制</h4>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>功能</th>
+                            <th>描述</th>
+                            <th>参数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Connect</td>
+                            <td>连接到机械臂</td>
+                            <td>
+                                <ul>
+                                    <li>串口: COM1-COM99</li>
+                                    <li>波特率: 115200</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Disconnect</td>
+                            <td>安全断开连接</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td>Refresh</td>
+                            <td>刷新可用串口列表</td>
+                            <td>无</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>运动控制</h4>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>功能</th>
+                            <th>描述</th>
+                            <th>参数范围</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>电位器开关</td>
+                            <td>切换控制模式</td>
+                            <td>ON/OFF</td>
+                        </tr>
+                        <tr>
+                            <td>关节滑块</td>
+                            <td>控制各关节角度</td>
+                            <td>-180° ~ +180°</td>
+                        </tr>
+                        <tr>
+                            <td>末端执行器</td>
+                            <td>控制夹爪开合</td>
+                            <td>OPEN/CLOSE</td>
+                        </tr>
+                        <tr>
+                            <td>归零按钮</td>
+                            <td>使机械臂回到初始位置</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>执行按钮</td>
+                            <td>执行当前设定的动作</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-warning">
+                    <h5>注意事项：</h5>
+                    <ul>
+                        <li>首次使用请进行Home位置校准</li>
+                        <li>切换模式前确保机械臂处于安全位置</li>
+                        <li>注意工作空间限制</li>
+                    </ul>
+                </div>
             </section>
             <hr class="divider">
       
             <!-- Anytroller -->
             <section id="anytroller">
                 <h3>Anytroller</h3>
-                <p>这里是关于Anytroller的介绍，包括其特点、应用场景和操作指南...</p>
+                <div class="alert alert-info">
+                    <p>Anytroller是一个通用机械臂控制接口，支持1-8个关节的自定义机械臂配置和控制。</p>
+                </div>
+
+                <h4>初始化配置</h4>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>参数</th>
+                            <th>描述</th>
+                            <th>取值范围</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>关节数量</td>
+                            <td>设置机械臂的关节数</td>
+                            <td>1-8个</td>
+                        </tr>
+                        <tr>
+                            <td>初始位置</td>
+                            <td>各关节的起始角度</td>
+                            <td>-180° ~ +180°</td>
+                        </tr>
+                        <tr>
+                            <td>运动范围</td>
+                            <td>各关节的最大运动范围</td>
+                            <td>可自定义限位角度</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>控制功能</h4>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>功能</th>
+                            <th>描述</th>
+                            <th>参数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>关节控制</td>
+                            <td>独立控制每个关节</td>
+                            <td>
+                                <ul>
+                                    <li>角度: -180° ~ +180°</li>
+                                    <li>速度: 0-100%</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>同步运动</td>
+                            <td>多关节协同运动</td>
+                            <td>支持自定义运动序列</td>
+                        </tr>
+                        <tr>
+                            <td>Home位置</td>
+                            <td>返回预设的初始位置</td>
+                            <td>可自定义Home位置</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-warning">
+                    <h5>使用注意：</h5>
+                    <ul>
+                        <li>首次使用前必须完成初始化配置</li>
+                        <li>确保所有关节参数设置正确，避免碰撞</li>
+                        <li>建议先在低速模式下测试运动</li>
+                        <li>保存配置后可导出为配置文件供后续使用</li>
+                    </ul>
+                </div>
             </section>
             <hr class="divider">
 
