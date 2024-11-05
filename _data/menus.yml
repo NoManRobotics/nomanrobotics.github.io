@@ -22,7 +22,7 @@ footermenu:
   url: "privacy-policy/"
 
 - title: Bussiness
-  url: "contact/"
+  url: "wewin/"
 
 - title: Download
-  url: software 
+  url: "download/"
