@@ -14,6 +14,10 @@ comments: false
     background: #fff;
 }
 
+section[id] {
+    scroll-margin-top: 100px; /* 调整这个值来控制滚动停止位置 */
+}
+
 .param-table th,
 .param-table td {
     padding: 12px 15px;
@@ -60,9 +64,83 @@ code {
     color: #0c5460;
 }
 
+/* 容器布局 */
+.techsupport-container {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    gap: 30px;
+}
+
+/* 导航栏样式 */
+.idocs-navigation {
+    position: sticky;
+    top: 100px;
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+    flex: 0 0 250px; /* 固定宽度 */
+    max-width: 250px; /* 最大宽度 */
+    padding-right: 15px;
+    z-index: 1000;
+}
+
+/* 内容区域样式 */
+.idocs-content {
+    flex: 1;
+    min-width: 0;
+    overflow-x: hidden;
+    padding-right: 1px;
+}
+
+/* 内容容器样式 */
+.idocs-content .container {
+    max-width: 100%;
+    padding: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .techsupport-container {
+        flex-direction: column;
+    }
+    
+    .idocs-navigation {
+        position: fixed;
+        left: -250px;
+        transition: left 0.3s ease;
+        background: white;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    
+    .idocs-navigation.active {
+        left: 0;
+    }
+    
+    .nav-toggle {
+        display: block;
+        position: fixed;
+        top: 100px;
+        left: 20px;
+        z-index: 1001;
+    }
+}
+
+/* 响应式调整 */
+@media (min-width: 1600px) {
+    .techsupport-container {
+        max-width: 1600px;
+    }
+}
+
+/* 隐藏移动端菜单按钮（在桌面端） */
+.nav-toggle {
+    display: none;
+}
 </style>
 
-<body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
+<body data-spy="scroll" data-target=".idocs-navigation" data-offset="100">
 
 <div class="techsupport-container">
     <!-- 添加导航切换按钮 -->
@@ -98,7 +176,7 @@ code {
             <!-- Item 1 -->
             <section id="item_1">
                 <h1>Carbonara</h1>
-                <p>Carbonara是一款五轴舵机机械臂,它的制造相对于工业机械臂来说成本较低。但是作为教育级用途, 我们非常希望大家能够通过Carbonara快速上手并了解机械臂的完整工作流程。</p>
+                <p>Carbonara是一款五轴舵机机械臂,它的制造相对于工业机械臂来说成本较低。但是作为教育级用途, 我们希望能够通过Carbonara让大家快速上手并了解机械臂的完整工作流程。</p>
                 <img src="/assets/images/robot_arm_system.png" alt="Carbonara机械臂系统架构" class="img-fluid" style="max-width: 450px; display: block; margin-left: auto; margin-right: auto; padding: 20px 0;">
                 <p>工业机械臂平台架构主要包括机械臂本体、电源供应、控制器、传感器和中央处理器（电脑）。我们的教育机械臂展现了工业机械臂的核心组成部分，但采用了更经济实惠的替代方案：</p>
                 <table class="table table-bordered">
@@ -227,7 +305,7 @@ code {
                 <p><strong>注意：</strong>您可以在树莓派上安装ROS,但不幸的是,它的性能不足以运行Rviz中的模拟,更不用说Gazebo了。</p>
                 
                 <ol>
-                    <li>配置ROS环境。请按照<a href="https://github.com/NoManRobotics/RPL-Scripts" target="_blank" style="text-decoration: underline;">这个快速安装指南</a>在对应Ubuntu版本上安装ROS。您需要依照每一步骤在终端下完成安装。</li>
+                    <li>配置ROS环境。请按照<a href="https://github.com/NoManRobotics/ROS-setup/tree/main/ros1" target="_blank" style="text-decoration: underline;">这个快速安装指南</a>在对应Ubuntu版本上安装ROS。您需要依照每一步骤在终端下完成安装。</li>
                     <li>MoveIt!是ROS中用于移动操作的软件包。检查MoveIt!是否正常工作。运行以下命令：
                         <pre><code>roslaunch panda_moveit_config demo.launch rviz_tutorial:=true</code></pre>
                         如果您愿意,可以按照MoveIt<a href="https://docs.ros.org/en/kinetic/api/moveit_tutorials/html/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html" target="_blank" style="text-decoration: underline;">基础教程</a>进行操作。
@@ -311,21 +389,206 @@ code {
             <!-- Item 1.4 -->
             <section id="item_1_4">
                 <h3>ROS2</h3>
+                <div class="alert alert-info">
+                    <p>本节将指导您在ROS2环境下配置和使用Carbonara机械臂。我们同样使用Ubuntu 22.04 LTS但是这次安装ROS2 Humble。</p>
+                    <p>根据官方教程，ROS2支持Linux和Windows系统。我们将分别对Linux和Windows系统进行配置。但是，我们仍然建议使用Linux环境。</p>
+                </div>
+
+                <h4>Linux环境配置</h4>
+                <ol>
+                    <li>配置ROS2环境。请按照<a href="https://github.com/NoManRobotics/ROS-setup/tree/main/ros2" target="_blank" style="text-decoration: underline;">这个快速安装指南</a>在对应Ubuntu版本上安装ROS2。您需要依照每一步骤在终端下完成安装。</li>
+                    <li>MoveIt!是ROS中用于移动操作的软件包。检查MoveIt!是否配置成功。运行以下命令：
+                        <pre><code>roslaunch panda_moveit_config demo.launch rviz_tutorial:=true</code></pre>
+                        如果您愿意,可以按照MoveIt<a href="https://docs.ros.org/en/kinetic/api/moveit_tutorials/html/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html" target="_blank" style="text-decoration: underline;">基础教程</a>进行操作。
+                    </li>
+                    <li>然后,您可以直接下载我们预处理完成的<a href="https://github.com/NoManRobotics" target="_blank" style="text-decoration: underline;">ROS2 workspace</a>,其中包括URDF文件和MoveIt2配置包。</li>
+                    <li>创建配置包后，进入您的工作空间并编译：
+                        <pre><code>cd ~/ros2_ws
+colcon build
+source install/setup.bash</code></pre>
+                    </li>
+                    <li>启动MoveIt2配置:
+                        <pre><code>ros2 launch my_robot_moveit_config demo.launch.py</code></pre>
+                    </li>
+                    <li>在ROS2中，我们使用micro-ROS替代了ROS1中的rosserial。ESP32运行micro-ROS客户端，与ROS2节点进行通信。micro-ROS节点订阅<code>/joint_states</code>话题，将关节角度从弧度转换为度，并通过PWM控制舵机。有关micro-ROS的更多信息，请参考<a href="https://micro.ros.org/docs/tutorials/core/first_application_linux/" target="_blank" style="text-decoration: underline;">micro-ROS教程</a>。</li>
+
+                    <li>通过USB物理连接机械臂:
+                        <pre><code>ros2 launch my_robot_moveit_config demo.launch.py
+sudo chmod 666 /dev/ttyUSB0
+ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyUSB0 -b 115200</code></pre>
+                    </li>
+                    <li>现在您可以在RViz2中使用交互式标记控制机械臂，规划并执行运动。</li>
+                </ol>
+
+
+                <h4>Windows环境配置</h4>
+                <ol>
+                    <li>配置ROS2环境。在Windows系统下，我们使用<a href="https://chocolatey.org/install" target="_blank" style="text-decoration: underline;">Chocolatey</a>包管理器来安装ROS2。</li>
+                    <li>打开命令提示符并输入以下命令来通过Chocolatey安装Python：
+                        <pre><code>choco install -y python --version 3.8.3</code></pre>
+                        <div class="alert alert-warning">
+                            <p>注意：Chocolatey会将Python安装在C:\Python38目录下，后续安装步骤都假定Python安装在该位置。如果您将Python安装在其他位置，必须将其复制或链接到此位置。</p>
+                        </div>
+                    </li>
+                    <li>安装Visual C++运行时库。打开命令提示符并输入以下命令通过Chocolatey安装：
+                        <pre><code>choco install -y vcredist2013 vcredist140</code></pre>
+                    </li>
+                    <li>安装OpenSSL：
+                        <ol>
+                            <li>从OpenSSL官网下载Win64 OpenSSL v1.1.1t安装包。请注意不要下载Win32或Light版本，也不要下载v3.X.Y版本的安装包。</li>
+                            <li>OpenSSL官网已经不再支持预编译的1.1.1版本。您可在<a href="https://github.com/openssl/openssl/releases" target="_blank" style="text-decoration: underline;">OpenSSL releases</a>下载源码，或使用Chocolatey包管理器（推荐）安装OpenSSL 1.1.1：<pre><code>choco install openssl --version=1.1.1.1400</code></pre></li>
+                            <li>打开命令提示符，运行以下命令设置环境变量：
+                                <pre><code>setx /m OPENSSL_CONF "C:\Program Files\OpenSSL-Win64\bin\openssl.cfg"</code></pre>
+                            </li>
+                            <li>将OpenSSL添加到系统PATH：
+                                <ul>
+                                    <li>点击Windows图标，输入"Environment Variables"</li>
+                                    <li>点击"编辑系统环境变量"</li>
+                                    <li>在弹出的对话框中点击"环境变量"</li>
+                                    <li>在下方窗格中选择"Path"变量并点击"编辑"</li>
+                                    <li>添加以下路径：<code>C:\Program Files\OpenSSL-Win64\bin\</code></li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>安装Visual Studio 2019：
+                        <ol>
+                            <li>如果您已经安装了Visual Studio 2019的付费版本（Professional或Enterprise），可以跳过此步骤。</li>
+                            <li>Microsoft提供免费的VS 2019 Community版本。您可以通过<a href="https://visualstudio.microsoft.com/vs/older-downloads/" target="_blank" style="text-decoration: underline;">官方链接</a>下载安装程序。</li>
+                            <li>确保安装Visual C++功能：
+                                <ul>
+                                    <li>在安装过程中选择"使用C++的桌面开发"工作流</li>
+                                    <li>在安装组件列表中取消选择所有C++ CMake工具</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>安装OpenCV：
+                        <ol>
+                            <li>下载预编译的OpenCV 3.4.6版本：
+                                <ul>
+                                    <li>从<a href="https://github.com/ros2/ros2/releases/download/opencv-archives/opencv-3.4.6-vc16.VS2019.zip" target="_blank" style="text-decoration: underline;">此链接</a>下载OpenCV 3.4.6</li>
+                                    <li>将下载的文件解压到<code>C:\opencv</code>目录</li>
+                                </ul>
+                            </li>
+                            <li>以管理员权限打开命令提示符，运行以下命令设置环境变量：
+                                <pre><code>setx /m OpenCV_DIR C:\opencv</code></pre>
+                            </li>
+                            <li>将OpenCV添加到系统PATH：
+                                <ul>
+                                    <li>点击Windows图标，输入"Environment Variables"</li>
+                                    <li>点击"编辑系统环境变量"</li>
+                                    <li>在弹出的对话框中点击"环境变量"</li>
+                                    <li>在下方窗格中选择"Path"变量并点击"编辑"</li>
+                                    <li>添加以下路径：<code>C:\opencv\x64\vc16\bin</code></li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>安装CMake和其他依赖项：
+                        <ol>
+                            <li>使用Chocolatey安装CMake：
+                                <pre><code>choco install -y cmake</code></pre>
+                            </li>
+                            <li>将CMake添加到系统PATH：
+                                <ul>
+                                    <li>点击Windows图标，输入"Environment Variables"</li>
+                                    <li>点击"编辑系统环境变量"</li>
+                                    <li>在弹出的对话框中点击"环境变量"</li>
+                                    <li>在下方窗格中选择"Path"变量并点击"编辑"</li>
+                                    <li>添加以下路径：<code>C:\Program Files\CMake\bin</code></li>
+                                </ul>
+                            </li>
+                            <li>从<a href="https://github.com/ros2/choco-packages/releases/tag/2022-03-15" target="_blank" style="text-decoration: underline;">ROS2 Chocolatey包发布页面</a>下载以下包：
+                                <ul>
+                                    <li>asio.1.12.1.nupkg</li>
+                                    <li>bullet.3.17.nupkg</li>
+                                    <li>cunit.2.1.3.nupkg</li>
+                                    <li>eigen.3.3.4.nupkg</li>
+                                    <li>tinyxml-usestl.2.6.2.nupkg</li>
+                                    <li>tinyxml2.6.0.0.nupkg</li>
+                                </ul>
+                            </li>
+                            <li>以管理员权限打开命令提示符，运行以下命令安装这些包（请将 &lt;PATH\TO\DOWNLOADS&gt; 替换为您下载包的实际路径）：
+                                <pre><code>choco install -y -s &lt;PATH\TO\DOWNLOADS&gt; asio cunit eigen tinyxml-usestl tinyxml2 bullet</code></pre>
+                            </li>
+                            <li>升级pip和setuptools：
+                                <pre><code>python -m pip install -U pip setuptools==59.6.0</code></pre>
+                            </li>
+                            <li>安装ROS2所需的Python依赖：
+                                <pre><code>python -m pip install -U catkin_pkg cryptography empy importlib-metadata jsonschema lark==1.1.1 lxml matplotlib netifaces numpy opencv-python PyQt5 pillow psutil pycairo pydot pyparsing==2.4.7 pyyaml rosdistro</code></pre>
+                            </li>
+                    </li>
+                    <li>安装xmllint：
+                        <ol>
+                            <li>从 <a href="https://www.zlatkovic.com/projects/libxml/">https://www.zlatkovic.com/projects/libxml/</a> 下载以下64位二进制文件：
+                                <ul>
+                                    <li>iconv</li>
+                                    <li>libxml2</li>
+                                    <li>zlib</li>
+                                </ul>
+                            </li>
+                            <li>将所有文件解压到 <code>C:\xmllint</code> 目录</li>
+                            <li>将xmllint添加到系统PATH：
+                                <ul>
+                                    <li>点击Windows图标，输入"Environment Variables"</li>
+                                    <li>点击"编辑系统环境变量"</li>
+                                    <li>在弹出的对话框中点击"环境变量"</li>
+                                    <li>在下方窗格中选择"Path"变量并点击"编辑"</li>
+                                    <li>添加以下路径：<code>C:\xmllint\bin</code></li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>安装Qt：
+                        <ol>
+                            <li>从<a href="https://www.qt.io/offline-installers" target="_blank" style="text-decoration: underline;">Qt官网</a>下载Qt 5.12.X离线安装包</li>
+                            <li>运行安装程序，在Qt -> Qt 5.12.12目录下选择MSVC 2017 64-bit组件</li>
+                            <li>以管理员权限打开命令提示符，设置以下环境变量（假设Qt安装在默认位置C:\Qt）：
+                                <pre><code>setx /m Qt5_DIR C:\Qt\Qt5.12.12\5.12.12\msvc2017_64
+setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\platforms</code></pre>
+                                <div class="alert alert-info">
+                                    <p>注意：根据实际安装的MSVC版本、Qt安装目录和Qt版本，以上路径可能需要调整。</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>安装Graphviz：
+                        <ol>
+                            <li>从<a href="https://graphviz.org/download/" target="_blank" style="text-decoration: underline;">Graphviz官网</a>下载Windows安装包</li>
+                            <li>运行安装程序，在安装过程中选择将Graphviz添加到系统PATH（可以选择"当前用户"或"所有用户"）</li>
+                            <div class="alert alert-info">
+                                <p>注意：Graphviz是运行rqt_graph所必需的依赖项。</p>
+                            </div>
+                        </ol>
+                    </li>
+                    <li>下载并安装ROS2：
+                        <ol>
+                            <li>访问<a href="https://github.com/ros2/ros2/releases" target="_blank" style="text-decoration: underline;">ROS2发布页面</a></li>
+                            <li>下载最新的Windows安装包（例如：ros2-package-windows-AMD64.zip）
+                                <div class="alert alert-info">
+                                    <p>注意：可能会有多个二进制下载选项，文件名可能会有所不同。</p>
+                                </div>
+                            </li>
+                            <li>将下载的zip文件解压到指定目录（例如：C:\dev\ros2_humble）</li>
+                        </ol>
+                    </li>
+                </ol>
             </section>
+
+
             <hr class="divider">
-      
-            <!-- Item 2 -->
             <section id="item_2">
-                <h3>Carbonara 示教器</h3>
-                <p>我们提供专业的示教器软件，包括以下几个主要组件：</p>
+                <h1>Carbonara示教器</h1>
+                <p>Carbonara示教器是Carbonara机械臂的配套软件，提供直观的图形界面来控制机械臂。它包含以下主要功能模块：</p>
+                
                 <ul>
-                    <li>Controller: 用于直接控制机械臂的各个关节</li>
-                    <li>Anytroller: 一个灵活的编程接口使用户可以在我们的软件上控制其它自定义机械臂</li>
-                    <li>ROS集: 与机器人操作系统(ROS)集成，提供专业的工业机器人编程</li>
-                    <li>运动学模块: 在任何系统下处理机械臂的正向和逆向运动学计算</li>
-                    <li>固件管理: 用于更新和维护机械臂的固件</li>
+                    <li><strong>Controller控制器</strong> - 核心控制模块，提供基础的机械臂控制功能</li>
+                    <li><strong>Anytroller通用控制器</strong> - 提供任意机械臂的控制接口</li>
+                    <li><strong>ROS接口</strong> - 与ROS系统的集成接口</li>
+                    <li><strong>运动学模块</strong> - 处理机械臂正逆运动学计算和扩展应用</li>
+                    <li><strong>固件管理</strong> - 机械臂固件的更新与管理</li>
                 </ul>
-                <p>我们将详细介绍每个组件的功能和使用方法。</p>
             </section>
             <hr class="divider">
       
@@ -500,22 +763,287 @@ code {
 
             <!-- ROS -->
             <section id="ros">
-                <h3>ROS</h3>
-                <p>这里是关于ROS的详细说明，包括其架构、主要组件和在项目中的应用...</p>
+                <h3>ROS接口</h3>
+                <div class="alert alert-info">
+                    <p>ROS接口模块提供了与ROS1和ROS2系统的集成功能，让用户能够通过ROS生态系统来控制和开发Carbonara机械臂应用。</p>
+                </div>
+
+                <h4>ROS配置</h4>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>功能</th>
+                            <th>描述</th>
+                            <th>参数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>System Check</td>
+                            <td>检查ROS环境配置</td>
+                            <td>
+                                <ul>
+                                    <li>ROS版本检测</li>
+                                    <li>依赖包检查</li>
+                                    <li>工作空间验证</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Switch Mode</td>
+                            <td>切换到ROS控制模式</td>
+                            <td>
+                                <ul>
+                                    <li>ROS1模式</li>
+                                    <li>ROS2模式</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>URDF配置</td>
+                            <td>机械臂模型配置</td>
+                            <td>
+                                <ul>
+                                    <li>ROS1 URDF</li>
+                                    <li>ROS2 URDF</li>
+                                    <li>自定义URDF导入</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Workspace</td>
+                            <td>工作空间配置</td>
+                            <td>
+                                <ul>
+                                    <li>catkin_ws (ROS1)</li>
+                                    <li>colcon_ws (ROS2)</li>
+                                    <li>包管理</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>MoveIt配置</td>
+                            <td>运动规划配置</td>
+                            <td>
+                                <ul>
+                                    <li>MoveIt Setup Assistant</li>
+                                    <li>规划组配置</li>
+                                    <li>控制器配置</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-warning">
+                    <h5>使用说明：</h5>
+                    <ul>
+                        <li>首次使用请先运行System Check确保环境正确置</li>
+                        <li>切换ROS模式前请确保已完成相应版本的配置</li>
+                        <li>URDF修改后需要重新运行MoveIt配置</li>
+                        <li>建议参考ROS Wiki了解更多使用细节</li>
+                    </ul>
+                </div>
             </section>
             <hr class="divider">
 
             <!-- Kinematics -->
             <section id="kinematics">
-                <h3>Kinematics</h3>
-                <p>这里是关于运动学的内容，包括正向运动学、逆向运动学以及在机器人控制中的应用...</p>
+                <h3>运动学模块</h3>
+                <div class="alert alert-info">
+                    <p>运动学模块提供了完整的机械臂运动学解算和路径规划功能，支持多种算法和应用场景。</p>
+                </div>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>功能</th>
+                            <th>说明</th>
+                            <th>参数设置</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>URDF配置</td>
+                            <td>机械臂模型加载</td>
+                            <td>
+                                <ul>
+                                    <li>加载URDF文件</li>
+                                    <li>导入URDF (默认: Carbonara)</li>
+                                    <li>URDF预览</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>求解器参数</td>
+                            <td>运动学求解器配置</td>
+                            <td>
+                                <ul>
+                                    <li>逆解算器选择:
+                                        <ul>
+                                            <li>PyBullet求解器</li>
+                                            <li>Levenberg-Marquardt求解器</li>
+                                        </ul>
+                                    </li>
+                                    <li>规划器选择:
+                                        <ul>
+                                            <li>Linear规划器</li>
+                                            <li>RRT规划器</li>
+                                            <li>CHOMP规划器</li>
+                                        </ul>
+                                    </li>
+                                    <li>求解参数:
+                                        <ul>
+                                            <li>残差阈值 (Residual Threshold)</li>
+                                            <li>最大迭代次数 (Max Iterations)</li>
+                                            <li>Lambda参数 (仅LM算法)</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>运动学计算</td>
+                            <td>正逆运动学求解</td>
+                            <td>
+                                <ul>
+                                    <li>正运动学:
+                                        <ul>
+                                            <li>关节角度输入</li>
+                                            <li>末端位姿计算</li>
+                                        </ul>
+                                    </li>
+                                    <li>逆运动学:
+                                        <ul>
+                                            <li>目标位置(XYZ)输入</li>
+                                            <li>路径点设置</li>
+                                            <li>规划器启用选项</li>
+                                            <li>路径点数量设置</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>控制模式</td>
+                            <td>机械臂控制方式</td>
+                            <td>
+                                <ul>
+                                    <li>位姿控制 (摄像头)</li>
+                                    <li>G-code控制</li>
+                                    <li>工作空间分析器</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-warning">
+                    <h5>注意事项：</h5>
+                    <ul>
+                        <li>使用高级规划功能前请确保已正确配置关依赖</li>
+                        <li>建议在仿真环境中测试复杂轨迹</li>
+                        <li>进行工作空间分析时注意机械臂的物理限制</li>
+                    </ul>
+                </div>
             </section>
             <hr class="divider">
 
             <!-- Firmware -->
             <section id="firmware">
-                <h3>Firmware</h3>
-                <p>这里是关于固件的说明，包括固件更新、维护和故障排除等内容...</p>
+                <h3>固件管理</h3>
+                <div class="alert alert-info">
+                    <p>固件管理模块提供Carbonara机械臂的固件更新功能。请确保更新过程中电源稳定。</p>
+                </div>
+
+                <h4>基本配置</h4>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>配置项</th>
+                            <th>参数说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>串口连接</td>
+                            <td>
+                                <ul>
+                                    <li>端口选择: COM1-COM99</li>
+                                    <li>自动检测可用串口</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>开发板选择</td>
+                            <td>
+                                <ul>
+                                    <li>ESP32</li>
+                                    <li>Arduino</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>烧录参数</h4>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>开发板</th>
+                            <th>参数设置</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ESP32参数</td>
+                            <td>
+                                <ul>
+                                    <li>波特率 (Baud Rate): 115200</li>
+                                    <li>Flash模式 (Flash Mode): QIO</li>
+                                    <li>Flash频率 (Flash Frequency): 40m</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Arduino参数</td>
+                            <td>
+                                <ul>
+                                    <li>开发板型号 (Board Type): Uno</li>
+                                    <li>波特率 (Baud Rate): 115200</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>固件更新</h4>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>更新方式</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>自定义固件</td>
+                            <td>上传本地.bin文件进行更新</td>
+                        </tr>
+                        <tr>
+                            <td>远程固件</td>
+                            <td>在线更新官方最新固件</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-warning">
+                    <h5>注意事项：</h5>
+                    <ul>
+                        <li>更新前请确认选择了正确的开发板类型</li>
+                        <li>烧录过程中请勿断开设备连接</li>
+                    </ul>
+                </div>
             </section>
             <hr class="divider">
 
