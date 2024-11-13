@@ -5,338 +5,385 @@ permalink: "/product/"
 comments: false
 ---
 
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbonara 教育机械臂 - 开启机器人学习之旅</title>
+    <title>Minima 教育机械臂 - 开启机器人学习之旅</title>
     <style>
-        /* 全局样式 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-padding-top: 80px;
+        /* 产品页内容容器 */
+        .product-content {
+            /* 为全局导航留出空间 */
+            margin-top: 20px;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        /* 导航栏 */
-        header {
+        /* 产品页导航 */
+        .product-content .product-nav {
             background-color: #000;
             width: 100%;
+            position: relative;
+            z-index: 1;
         }
 
-        nav {
+        .product-content nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
         }
 
-        nav ul {
+        .product-content nav ul {
             display: flex;
             list-style-type: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            height: 100%;
         }
 
-        nav ul li {
+        .product-content nav ul li {
             margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
 
-        nav ul li a {
-            color: #fff;
+        .product-content nav ul li a {
+            color: #333;
             text-decoration: none;
             font-size: 0.9rem;
             padding: 0.5rem 0.75rem;
-            transition: background-color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            background-color: #333;
+            transition: all 0.3s ease;
             border-radius: 4px;
         }
 
-        /* 产品选择下拉菜单 */
-        .product-select {
+        .product-content nav ul li a:hover {
+            background-color: #f5f5f5;
+            color: #000;
+        }
+
+        /* 保留原有的其他样式，但都加上 .product-content 前缀 */
+        .product-content .product-select {
             position: relative;
             display: inline-block;
         }
 
-        .product-select select {
+        .product-content .product-select select {
             appearance: none;
-            background-color: #000;
-            color: #fff;
-            padding: 0.5rem 2rem 0.5rem 1rem;
-            font-size: 0.9rem;
-            border: 1px solid #fff;
-            border-radius: 4px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: transparent;
+            color: #333;
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             cursor: pointer;
+            min-width: 220px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        .product-select::after {
-            content: '\25BC';
+        .product-content .product-select::after {
+            content: '▼';
+            font-size: 0.8em;
+            color: #666;
             position: absolute;
+            right: 12px;
             top: 50%;
-            right: 1rem;
             transform: translateY(-50%);
-            color: #fff;
             pointer-events: none;
         }
 
-        /* 主要内容 */
-        main {
-            padding-top: 2rem;
+        .product-content .product-select select:hover {
+            border-color: #999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        section {
-            padding: 4rem 2rem;
+        .product-content .product-select select:focus {
+            outline: none;
+            border-color: #666;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* 主要内容区域样式 */
+        .product-content .hero {
+            background-color: #f5f5f5;
+            padding: 6rem 2rem;
             text-align: center;
         }
 
-        h1, h2, h3 {
-            margin-bottom: 1rem;
-            color: #000;
-        }
-
-        /* 英雄区 */
-        .hero {
-            background-color: #f5f5f5;
-            padding: 6rem 2rem;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 600;
-        }
-
-        .tagline {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        .product-image {
-            max-width: 100%;
-            height: auto;
-            margin-top: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 特性区 */
-        .feature-grid {
+        .product-content .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        .feature-item {
+        .product-content .feature-item {
             background-color: #fff;
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* 规格区 */
-        .specs ul {
+        .product-content .specs ul {
             list-style-type: none;
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .specs li {
+        .product-content .specs li {
             padding: 0.5rem 0;
             border-bottom: 1px solid #eee;
         }
 
-        /* 购买区 */
-        .buy {
+        .product-content .buy {
             background-color: #000;
             color: #fff;
+            text-align: center;
+            padding: 6rem 2rem;
+            margin-top: 4rem;
         }
 
-        .price {
-            font-size: 2rem;
-            font-weight: 600;
-            margin: 1rem 0;
+        .product-content .buy h2 {
+            margin-bottom: 1.5rem;
         }
 
-        .cta-button {
+        .product-content .buy .price {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-content .buy .cta-button {
             display: inline-block;
+            padding: 1rem 2rem;
             background-color: #fff;
             color: #000;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
             text-decoration: none;
-            font-size: 1.1rem;
-            transition: background-color 0.3s ease;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
 
-        .cta-button:hover {
+        .product-content .buy .cta-button:hover {
             background-color: #f0f0f0;
-        }
-
-        /* 页脚 */
-        footer {
-            background-color: #f5f5f5;
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            color: #666;
+            transform: translateY(-2px);
         }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
-            nav {
+            .product-content nav {
                 flex-direction: column;
                 align-items: flex-start;
             }
-
-            nav ul {
+            
+            .product-content nav ul {
                 margin-top: 1rem;
             }
-
-            .product-select {
+            
+            .product-content .product-select {
                 margin-top: 1rem;
             }
-
-            .hero h1 {
+            
+            .product-content .hero h1 {
                 font-size: 2.5rem;
             }
-
-            .tagline {
-                font-size: 1.1rem;
-            }
-
-            .feature-grid {
+            
+            .product-content .feature-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .product-content .platform-icons {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .product-content .specs ul {
+                padding: 0 1rem;
+            }
+            
+            .product-content .buy {
+                padding: 4rem 1rem;
+            }
+            .product-content .product-select select {
+                width: 100%;
+                min-width: unset;
+            }
         }
 
-        /* 新增：平台支持区域样式 */
-        .platform-support {
-            background-color: #f0f0f0;
-            padding: 3rem 2rem;
+        /* 生态标题居中 */
+        .product-content .features {
+            text-align: center;
+            padding: 4rem 2rem;
         }
 
-        .platform-icons {
+        .product-content .features h2 {
+            margin-bottom: 2rem;
+        }
+
+        /* 平台支持部分样式 */
+        .product-content .platform-support {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .product-content .platform-support h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .product-content .platform-support p {
+            margin-bottom: 2rem;
+        }
+
+        /* 平台图标容器样式 */
+        .product-content .platform-icons {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 2rem;
-            margin-top: 1rem;
+            margin: 0 auto;
+            max-width: 600px;
         }
 
-        .platform-icons img {
-            width: 64px;
-            height: 64px;
+        .product-content .platform-icons img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        /* 规格部分样式调整 */
+        .product-content .specs {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .product-content .specs h2 {
+            margin-bottom: 2rem;
+        }
+
+        .product-content .specs ul {
+            list-style-type: none;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 0 2rem;
+        }
+
+        .product-content .specs li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* 调整滚动定位的偏移量 */
+        .product-content section[id] {
+            scroll-margin-top: 80px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="product-select">
-                <select>
-                    <option value="carbonara">Carbonara 教育机械臂</option>
-                </select>
-            </div>
-            <ul>
-                <li><a href="#home">首页</a></li>
-                <li><a href="#features">生态</a></li>
-                <li><a href="#specs">规格</a></li>
-                <li><a href="#buy">购买</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="product-content">
+        <header>
+            <nav>
+                <div class="product-select">
+                    <select>
+                        <option value="Minima">Minima 教育机械臂</option>
+                    </select>
+                </div>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#features">生态</a></li>
+                    <li><a href="#specs">规格</a></li>
+                    <li><a href="#buy">购买</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <main>
-        <section id="home" class="hero">
-            <h1>Carbonara 教育机械臂</h1>
-            <p class="tagline">您的第一台教育机械臂, 无需太复杂</p>
-            <img src="/assets/images/5.jpg" alt="Carbonara 教育机械臂" class="product-image">
-        </section>
+        <main>
+            <section id="home" class="hero">
+                <h1>MINIMA 教育机械臂</h1>
+                <p class="tagline">一只手就能拿得起 却牛逼得不行</p>
+                <img src="/assets/images/5.jpg" alt="Minima 教育机械臂" class="product-image">
+            </section>
 
-        <section id="features" class="features">
-            <h2>生态</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <h3>多语言支持</h3>
-                    <p>支持Python、C++等多种编程语言，适合不同层次的学习需求</p>
+            <section id="features" class="features">
+                <h2>生态 好吓人</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h3>多语言支持</h3>
+                        <p>支持Python、C++等多种编程语言，适合不同层次的学习需求</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>上位机</h3>
+                        <p>支持Minima和自定义机械臂。角度控制，校准，ROS，运动学，G-code，视觉，运动空间分析。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>电位器同步控制</h3>
+                        <p>通过电位器实现直观的机械臂姿态控制，为Ahola自由做准备</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>视觉控制</h3>
+                        <p>我拿手都可以去控制机械臂！支持普通电脑摄像头和ZED深度摄像头</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>校准功能</h3>
+                        <p>内置校准程序，确保舵机精确位置</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>GPIO接口</h3>
+                        <p>提供丰富的GPIO接口, 支持多种外部设备扩展</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>ROS支持</h3>
+                        <p>兼容ROS/ROS2系统, 提供配置ROS/ROS2教程</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>G-code支持</h3>
+                        <p>支持G-code指令, 可用于3D打印和CNC应用</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>扩展末端执行器</h3>
+                        <p>快速更换多种末端执行器，如夹爪、吸盘等</p>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <h3>上位机控制</h3>
-                    <p>提供专业的上位机软件，方便控制和正逆运动学编程</p>
-                </div>
-                <div class="feature-item">
-                    <h3>电位器同步控制</h3>
-                    <p>通过电位器实现直观的机械臂姿态控制</p>
-                </div>
-                <div class="feature-item">
-                    <h3>视觉控制</h3>
-                    <p>集成视觉系统，实现基于图像的机械臂控制和图像处理</p>
-                </div>
-                <div class="feature-item">
-                    <h3>校准功能</h3>
-                    <p>内置校准程序，确保舵机精确位置</p>
-                </div>
-                <div class="feature-item">
-                    <h3>GPIO接口</h3>
-                    <p>提供丰富的GPIO接口, 支持多种外部设备连接</p>
-                </div>
-                <div class="feature-item">
-                    <h3>ROS支持</h3>
-                    <p>完全兼容ROS系统, 方便进行高级机器人开发</p>
-                </div>
-                <div class="feature-item">
-                    <h3>G-code支持</h3>
-                    <p>支持G-code指令, 可用于3D打印和CNC应用</p>
-                </div>
-                <div class="feature-item">
-                    <h3>扩展末端执行器</h3>
-                    <p>支持多种末端执行器，如夹爪、吸盘等</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="platform-support">
-            <h2>全平台开发支持</h2>
-            <p>Carbonara 教育机械臂支持在Windows、macOS和Linux平台上进行开发</p>
-            <div class="platform-icons">
-                <img src="/assets/images/windows.png" alt="Windows" style="width: 50px; height: 50px;">
-                <img src="/assets/images/macos.png" alt="macOS" style="width: 45px; height: 45px;">
-                <img src="/assets/images/linux.png" alt="Linux" style="width: 45px; height: 45px;">
-            </div>
-        </section>
+            <section class="platform-support">
+                <h2>全平台开发支持</h2>
+                <p>Minima 教育机械臂支持在Windows、macOS和Linux平台上进行开发</p>
+                <div class="platform-icons">
+                    <img src="/assets/images/windows.png" alt="Windows" style="width: 50px; height: 50px;">
+                    <img src="/assets/images/macos.png" alt="macOS" style="width: 45px; height: 45px;">
+                    <img src="/assets/images/linux.png" alt="Linux" style="width: 45px; height: 45px;">
+                </div>
+            </section>
 
-        <section id="specs" class="specs">
-            <h2>技术规格</h2>
-            <ul>
-                <li>有效负载: 500g</li>
-                <li>工作半径: 150mm</li>
-                <li>重复定位精度: ±0.5mm</li>
-                <li>自由度: 5</li>
-                <li>控制系统: 开源控制器，支持Arduino, ESP32编程</li>
-                <li>通信接口: USB, Wi-Fi</li>
-                <li>编程支持: Python, C++, ROS, Arduino, ESP32</li>
-                <li>软件兼容: RobotDK, MATLAB</li>
-            </ul>
-        </section>
+            <section id="specs" class="specs">
+                <h2>技术规格</h2>
+                <ul>
+                    <li>有效负载: 500g</li>
+                    <li>工作半径: 150mm</li>
+                    <li>重复定位精度: ±0.5mm</li>
+                    <li>自由度: 5</li>
+                    <li>控制系统: Open loop</li>
+                    <li>通信接口: USB, Wi-Fi</li>
+                    <li>编程支持: Python, C++等</li>
+                    <li>控制器: Arduino, ESP32</li>
+                    <li>软件兼容: ROS, RobotDK, MATLAB</li>
+                </ul>
+            </section>
 
-        <section id="buy" class="buy">
-            <h2>立即购买</h2>
-            <p class="price">￥9,999 起</p>
-            <a href="#" class="cta-button">预订 Carbonara 教育机械臂</a>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Carbonara 教育机械臂. 保留所有权利。</p>
-    </footer>
+            <section id="buy" class="buy">
+                <h2>立即购买</h2>
+                <p class="price">￥9,999 起</p>
+                <a href="#" class="cta-button">预订 Minima 教育机械臂</a>
+            </section>
+        </main>
+    </div>
 </body>
 </html>

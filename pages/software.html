@@ -6,25 +6,37 @@ comments: false
 ---
 
 <style>
-/* 参数表格 */
-.param-table {
+/* 限制作用域，只对技术支持页面内容生效 */
+.techsupport-container {
+    /* 原有样式保持不变 */
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    gap: 30px;
+    padding-top: 80px; /* 为顶部导航留出空间 */
+}
+
+/* 其他样式需要添加特定的作用域 */
+.techsupport-container .param-table {
     width: 100%;
     border-collapse: collapse;
     margin: 15px 0;
     background: #fff;
 }
 
-section[id] {
-    scroll-margin-top: 100px; /* 调整这个值来控制滚动停止位置 */
+.techsupport-container section[id] {
+    scroll-margin-top: 100px;
 }
 
-.param-table th,
-.param-table td {
+.techsupport-container .param-table th,
+.techsupport-container .param-table td {
     padding: 12px 15px;
     border: 1px solid #e9ecef;
 }
 
-.param-table th {
+.techsupport-container .param-table th {
     background: #f8f9fa;
     font-weight: 600;
 }
@@ -64,26 +76,16 @@ code {
     color: #0c5460;
 }
 
-/* 容器布局 */
-.techsupport-container {
-    display: flex;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
-    gap: 30px;
-}
-
-/* 导航栏样式 */
+/* 导航栏样式修改，避免影响全局导航 */
 .idocs-navigation {
     position: sticky;
     top: 100px;
     height: calc(100vh - 100px);
     overflow-y: auto;
-    flex: 0 0 250px; /* 固定宽度 */
-    max-width: 250px; /* 最大宽度 */
+    flex: 0 0 250px;
+    max-width: 250px;
     padding-right: 15px;
-    z-index: 1000;
+    z-index: 999;
 }
 
 /* 内容区域样式 */
@@ -104,6 +106,7 @@ code {
 @media (max-width: 768px) {
     .techsupport-container {
         flex-direction: column;
+        padding-top: 60px;
     }
     
     .idocs-navigation {
@@ -112,6 +115,7 @@ code {
         transition: left 0.3s ease;
         background: white;
         box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
     }
     
     .idocs-navigation.active {
@@ -149,7 +153,7 @@ code {
     <!-- Sidebar Navigation -->
     <div class="idocs-navigation bg-light">
         <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link active" href="#item_1">Carbonara</a>
+            <li class="nav-item"><a class="nav-link active" href="#item_1">Minima</a>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a class="nav-link" href="#item_1_1">用户手册</a></li>
                     <li class="nav-item"><a class="nav-link" href="#item_1_2">软件下载</a></li>
@@ -157,7 +161,7 @@ code {
                     <li class="nav-item"><a class="nav-link" href="#item_1_4">ROS2</a></li>
                 </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#item_2">Carbonara 示教器</a>
+            <li class="nav-item"><a class="nav-link" href="#item_2">Minima 示教器</a>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a class="nav-link" href="#controller">Controller</a></li>
                     <li class="nav-item"><a class="nav-link" href="#anytroller">Anytroller</a></li>
@@ -175,16 +179,16 @@ code {
         <div class="container"> 
             <!-- Item 1 -->
             <section id="item_1">
-                <h1>Carbonara</h1>
-                <p>Carbonara是一款五轴舵机机械臂,它的制造相对于工业机械臂来说成本较低。但是作为教育级用途, 我们希望能够通过Carbonara让大家快速上手并了解机械臂的完整工作流程。</p>
-                <img src="/assets/images/robot_arm_system.png" alt="Carbonara机械臂系统架构" class="img-fluid" style="max-width: 450px; display: block; margin-left: auto; margin-right: auto; padding: 20px 0;">
+                <h1>Minima</h1>
+                <p>Minima是一款五轴舵机机械臂,它的制造相对于工业机械臂来说成本较低。但是作为教育级用途, 我们希望能够通过Minima让大家快速上手并了解机械臂的完整工作流程。</p>
+                <img src="/assets/images/robot_arm_system.png" alt="Minima机械臂系统架构" class="img-fluid" style="max-width: 450px; display: block; margin-left: auto; margin-right: auto; padding: 20px 0;">
                 <p>工业机械臂平台架构主要包括机械臂本体、电源供应、控制器、传感器和中央处理器（电脑）。我们的教育机械臂展现了工业机械臂的核心组成部分，但采用了更经济实惠的替代方案：</p>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>系统组成</th>
                             <th>工业机械臂</th>
-                            <th>Carbonara教育机械臂</th>
+                            <th>Minima教育机械臂</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -216,10 +220,10 @@ code {
                     </tbody>
                 </table>
                 
-                <p>本页面将指导您完成从环境准备到实际操作Carbonara的各项流程。</p>
+                <p>本页面将指导您完成从环境准备到实际操作Minima的各项流程。</p>
                 <h4>快速导航：</h4>
                 <ul>
-                    <li>Carbonara
+                    <li>Minima
                         <ul>
                             <li><a href="#item_1_1">用户手册</a></li>
                             <li><a href="#item_1_2">软件下载</a></li>
@@ -227,7 +231,7 @@ code {
                             <li><a href="#item_1_4">ROS2配置指南</a></li>
                         </ul>
                     </li>
-                    <li><a href="#item_2">Carbonara 示教器</a>
+                    <li><a href="#item_2">Minima 示教器</a>
                         <ul>
                             <li><a href="#controller">Controller</a></li>
                             <li><a href="#anytroller">Anytroller</a></li>
@@ -277,7 +281,7 @@ code {
             <!-- Item 1.2 -->
             <section id="item_1_2">
                 <h3>软件下载</h3>
-                <p>如果您不使用电位器控制器，可以下载我们提供的示教器软件来控制 Carbonara 机械臂。我们为不同操作系统提供了相应的软件版本。</p>
+                <p>如果您不使用电位器控制器，可以下载我们提供的示教器软件来控制 Minima 机械臂。我们为不同操作系统提供了相应的软件版本。</p>
                 
                 <h4>上位机软件下载</h4>
                 <ul>
@@ -290,7 +294,7 @@ code {
                 <p>下载并安装适合您操作系统的版本后，请参考软件内的使用说明进行操作。如遇到任何问题，请查看我们的<a href="#" target="_blank" style="text-decoration: underline; color: purple;">常见问题解答</a>或联系我们的技术支持。</p>
 
                 <h4>机械臂主控固件</h4>
-                <p><strong>注意：</strong>机械臂主控固件已预先安装在您的机械臂中，用户通常无需自行下载或安装。如果您需要重新安装固件或进行手动更新，可以从以下链接下载最新版本的固件：<a href="https://github.com/NoManRobotics/Carbonara-releases" target="_blank" style="text-decoration: underline; color: purple;">下载 Carbonara 机械臂固件</a></p>
+                <p><strong>注意：</strong>机械臂主控固件已预先安装在您的机械臂中，用户通常无需自行下载或安装。如果您需要重新安装固件或进行手动更新，可以从以下链接下载最新版本的固件：<a href="https://github.com/NoManRobotics/Minima-releases" target="_blank" style="text-decoration: underline; color: purple;">下载 Minima 机械臂固件</a></p>
                 
                 <p>我们建议通过示教器软件自动烧录固件。只需在示教器软件中找到"固件"选项，然后按照提示进行操作烧录最新固件。</p>
             </section>
@@ -315,7 +319,7 @@ code {
                 <p>然后,您可以直接下载我们预处理完成的<a href="https://github.com/NoManRobotics" target="_blank" style="text-decoration: underline;">ROS workspace</a>,其中包括URDF文件和Moveit!配置包。如果想深入了解ROS机械臂配置过程,可以根据以下两步指南进行手动配置。</p>
 
                 <h3>Step 2: Unified Robot Description Format (URDF)</h3>
-                <p>我们已经为您准备好了Carbonara的统一机器人描述格式文件。您可以从我们的GitHub仓库下载这个<a href="https://github.com/NoManRobotics" target="_blank" style="text-decoration: underline;">URDF文件</a>。</p>
+                <p>我们已经为您准备好了Minima的统一机器人描述格式文件。您可以从我们的GitHub仓库下载这个<a href="https://github.com/NoManRobotics" target="_blank" style="text-decoration: underline;">URDF文件</a>。</p>
                 <p>我们将简要介绍URDF文件的结构和内容,以帮助您更好地理解它,并在将来编写自己的URDF文件时作为参考。</p>
 
                 <h4>连接(Links)</h4>
@@ -390,7 +394,7 @@ code {
             <section id="item_1_4">
                 <h3>ROS2</h3>
                 <div class="alert alert-info">
-                    <p>本节将指导您在ROS2环境下配置和使用Carbonara机械臂。我们同样使用Ubuntu 22.04 LTS但是这次安装ROS2 Humble。</p>
+                    <p>本节将指导您在ROS2环境下配置和使用Minima机械臂。我们同样使用Ubuntu 22.04 LTS但是这次安装ROS2 Humble。</p>
                     <p>根据官方教程，ROS2支持Linux和Windows系统。我们将分别对Linux和Windows系统进行配置。但是，我们仍然建议使用Linux环境。</p>
                 </div>
 
@@ -424,7 +428,7 @@ ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyUSB0 -b 115200</co
                 <h4>Windows环境配置</h4>
                 <ol>
                     <li>配置ROS2环境。在Windows系统下，我们使用<a href="https://chocolatey.org/install" target="_blank" style="text-decoration: underline;">Chocolatey</a>包管理器来安装ROS2。</li>
-                    <li>打开命令提示符并输入以下命令来通过Chocolatey安装Python：
+                    <li>打开拥有管理员权限的命令提示符并输入以下命令来通过Chocolatey安装Python：
                         <pre><code>choco install -y python --version 3.8.3</code></pre>
                         <div class="alert alert-warning">
                             <p>注意：Chocolatey会将Python安装在C:\Python38目录下，后续安装步骤都假定Python安装在该位置。如果您将Python安装在其他位置，必须将其复制或链接到此位置。</p>
@@ -474,14 +478,7 @@ ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyUSB0 -b 115200</co
                             <li>以管理员权限打开命令提示符，运行以下命令设置环境变量：
                                 <pre><code>setx /m OpenCV_DIR C:\opencv</code></pre>
                             </li>
-                            <li>将OpenCV添加到系统PATH：
-                                <ul>
-                                    <li>点击Windows图标，输入"Environment Variables"</li>
-                                    <li>点击"编辑系统环境变量"</li>
-                                    <li>在弹出的对话框中点击"环境变量"</li>
-                                    <li>在下方窗格中选择"Path"变量并点击"编辑"</li>
-                                    <li>添加以下路径：<code>C:\opencv\x64\vc16\bin</code></li>
-                                </ul>
+                            <li>将OpenCV添加到系统环境变量PATH。添加以下路径：<code>C:\opencv\x64\vc16\bin</code>
                             </li>
                         </ol>
                     </li>
@@ -490,14 +487,7 @@ ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyUSB0 -b 115200</co
                             <li>使用Chocolatey安装CMake：
                                 <pre><code>choco install -y cmake</code></pre>
                             </li>
-                            <li>将CMake添加到系统PATH：
-                                <ul>
-                                    <li>点击Windows图标，输入"Environment Variables"</li>
-                                    <li>点击"编辑系统环境变量"</li>
-                                    <li>在弹出的对话框中点击"环境变量"</li>
-                                    <li>在下方窗格中选择"Path"变量并点击"编辑"</li>
-                                    <li>添加以下路径：<code>C:\Program Files\CMake\bin</code></li>
-                                </ul>
+                            <li>将CMake添加到系统环境变量PATH。添加以下路径：<code>C:\Program Files\CMake\bin</code>
                             </li>
                             <li>从<a href="https://github.com/ros2/choco-packages/releases/tag/2022-03-15" target="_blank" style="text-decoration: underline;">ROS2 Chocolatey包发布页面</a>下载以下包：
                                 <ul>
@@ -529,14 +519,7 @@ ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyUSB0 -b 115200</co
                                 </ul>
                             </li>
                             <li>将所有文件解压到 <code>C:\xmllint</code> 目录</li>
-                            <li>将xmllint添加到系统PATH：
-                                <ul>
-                                    <li>点击Windows图标，输入"Environment Variables"</li>
-                                    <li>点击"编辑系统环境变量"</li>
-                                    <li>在弹出的对话框中点击"环境变量"</li>
-                                    <li>在下方窗格中选择"Path"变量并点击"编辑"</li>
-                                    <li>添加以下路径：<code>C:\xmllint\bin</code></li>
-                                </ul>
+                            <li>将xmllint添加到系统环境变量PATH，添加以下路径：<code>C:\xmllint\bin</code>
                             </li>
                         </ol>
                     </li>
@@ -573,14 +556,27 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
                             <li>将下载的zip文件解压到指定目录（例如：C:\dev\ros2_humble）</li>
                         </ol>
                     </li>
+                    <li>设置ROS2环境：
+                        <ol>
+                            <li>打开命令提示符，运行以下命令来设置ROS2工作空间：
+                                <pre><code>call C:\dev\ros2_iron\local_setup.bat</code></pre>
+                                <div class="alert alert-info">
+                                    <p>注意：如果命令执行后出现一次"系统找不到指定的路径"的提示是正常现象，只要没有其他错误即可。</p>
+                                </div>
+                            </li>
+                            <div class="alert alert-info">
+                                <p>若您仍然遇到问题请尝试运行这个脚本修复环境和安装确实的依赖</p>
+                            </div>
+                        </ol>
+                    </li>
                 </ol>
             </section>
 
 
             <hr class="divider">
             <section id="item_2">
-                <h1>Carbonara示教器</h1>
-                <p>Carbonara示教器是Carbonara机械臂的配套软件，提供直观的图形界面来控制机械臂。它包含以下主要功能模块：</p>
+                <h1>Minima示教器</h1>
+                <p>Minima示教器是Minima机械臂的配套软件，提供直观的图形界面来控制机械臂。它包含以下主要功能模块：</p>
                 
                 <ul>
                     <li><strong>Controller控制器</strong> - 核心控制模块，提供基础的机械臂控制功能</li>
@@ -596,7 +592,7 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
             <section id="controller" class="doc-section">
                 <h3>Controller 控制器</h3>
                 <div class="alert alert-info">
-                    <p>Controller是Carbonara示教器的核心控制模块，提供直观的图形界面来控制机械臂。</p>
+                    <p>Controller是Minima示教器的核心控制模块，提供直观的图形界面来控制机械臂。</p>
                 </div>
 
                 <h4>连接控制</h4>
@@ -765,7 +761,7 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
             <section id="ros">
                 <h3>ROS接口</h3>
                 <div class="alert alert-info">
-                    <p>ROS接口模块提供了与ROS1和ROS2系统的集成功能，让用户能够通过ROS生态系统来控制和开发Carbonara机械臂应用。</p>
+                    <p>ROS接口模块提供了与ROS1和ROS2系统的集成功能，让用户能够通过ROS生态系统来控制和开发Minima机械臂应用。</p>
                 </div>
 
                 <h4>ROS配置</h4>
@@ -869,7 +865,7 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
                             <td>
                                 <ul>
                                     <li>加载URDF文件</li>
-                                    <li>导入URDF (默认: Carbonara)</li>
+                                    <li>导入URDF (默认: Minima)</li>
                                     <li>URDF预览</li>
                                 </ul>
                             </td>
@@ -953,7 +949,7 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
             <section id="firmware">
                 <h3>固件管理</h3>
                 <div class="alert alert-info">
-                    <p>固件管理模块提供Carbonara机械臂的固件更新功能。请确保更新过程中电源稳定。</p>
+                    <p>固件管理模块提供Minima机械臂的固件更新功能。请确保更新过程中电源稳定。</p>
                 </div>
 
                 <h4>基本配置</h4>
@@ -1068,7 +1064,7 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
                     <li>
                         <strong>版本 1.0 (2024-09-10)</strong>
                         <ul>
-                            <li>Carbonara示教器软件正式版发布</li>
+                            <li>Minima示教器软件正式版发布</li>
                             <li>新增ROS集成功能</li>
                             <li>优化了Controller的用户界面</li>
                             <li>修复了一些已知的稳定性问题</li>
@@ -1077,7 +1073,7 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
                     <li>
                         <strong>版本 1.0-beta (2024-09-01)</strong>
                         <ul>
-                            <li>Carbonara示教器软件测试板发布</li>
+                            <li>Minima示教器软件测试板发布</li>
                             <li>包含Controller基本功能</li>
                         </ul>
                     </li>
