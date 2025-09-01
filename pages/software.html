@@ -161,7 +161,7 @@ code {
                     <li class="nav-item"><a class="nav-link" href="#item_1_4">ROS2</a></li>
                 </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#item_2">Minima 示教器</a>
+            <li class="nav-item"><a class="nav-link" href="#item_2">Robonana</a>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a class="nav-link" href="#controller">Controller</a></li>
                     <li class="nav-item"><a class="nav-link" href="#anytroller">Anytroller</a></li>
@@ -231,7 +231,7 @@ code {
                             <li><a href="#item_1_4">ROS2配置指南</a></li>
                         </ul>
                     </li>
-                    <li><a href="#item_2">Minima 示教器</a>
+                    <li><a href="#item_2">Robonana</a>
                         <ul>
                             <li><a href="#controller">Controller</a></li>
                             <li><a href="#anytroller">Anytroller</a></li>
@@ -281,7 +281,7 @@ code {
             <!-- Item 1.2 -->
             <section id="item_1_2">
                 <h3>软件下载</h3>
-                <p>如果您不使用电位器控制器，可以下载我们提供的示教器软件来控制 Minima 机械臂。我们为不同操作系统提供了相应的软件版本。</p>
+                <p>如果您不使用电位器控制器，可以下载我们提供的通用软件来控制 Minima 机械臂。我们为不同操作系统提供了相应的软件版本。</p>
                 
                 <h4>上位机软件下载</h4>
                 <ul>
@@ -296,7 +296,7 @@ code {
                 <h4>机械臂主控固件</h4>
                 <p><strong>注意：</strong>机械臂主控固件已预先安装在您的机械臂中，用户通常无需自行下载或安装。如果您需要重新安装固件或进行手动更新，可以从以下链接下载最新版本的固件：<a href="https://github.com/NoManRobotics/Minima-releases" target="_blank" style="text-decoration: underline; color: purple;">下载 Minima 机械臂固件</a></p>
                 
-                <p>我们建议通过示教器软件自动烧录固件。只需在示教器软件中找到"固件"选项，然后按照提示进行操作烧录最新固件。</p>
+                <p>我们建议通过软件自动烧录固件。只需在Robonana中找到"固件"选项，然后按照提示进行操作烧录最新固件。</p>
             </section>
             <hr class="divider">
 
@@ -575,16 +575,27 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
 
             <hr class="divider">
             <section id="item_2">
-                <h1>Minima示教器</h1>
-                <p>Minima示教器是Minima机械臂的配套软件，提供直观的图形界面来控制机械臂。它包含以下主要功能模块：</p>
+                <h1>Robonana</h1>
+                <p>Robonana起初设计用于Minima机械臂控制，但现在支持了第三方机械臂适配，提供直观的图形界面来控制机械臂。它包含以下主要功能模块：</p>
                 
                 <ul>
+                    <li><strong>机器人配置</strong> - 机器人描述和配置管理, 用于添加和配置第三方机械臂</li>
                     <li><strong>Controller控制器</strong> - 核心控制模块，提供基础的机械臂控制功能</li>
                     <li><strong>Anytroller通用控制器</strong> - 提供任意机械臂的控制接口</li>
                     <li><strong>ROS接口</strong> - 与ROS系统的集成接口</li>
-                    <li><strong>运动学模块</strong> - 处理机械臂正逆运动学计算和扩展应用</li>
+                    <li><strong>仿真器（Simulator）</strong> - 基于PyBullet的3D仿真环境</li>
+                    <li><strong>Majordomo</strong> - LLM助手</li>
+                    <li><strong>运动学模块</strong> - 处理机械臂正逆运动学计算，路径规划和工作区域分析</li>
+                    <li><strong>专业指令模块</strong> - 撰写并编译专业机械臂指令用于自动化应用</li>
                     <li><strong>固件管理</strong> - 机械臂固件的更新与管理</li>
                 </ul>
+            </section>
+            <hr class="divider">
+
+            <!-- Robot Profile -->
+            <section id="robot_profile">
+                <h3>Robot Profile</h3>
+                <p>Robot Profile是Robonana的机器人描述和配置管理系统，用于添加和配置第三方机械臂。</p>
             </section>
             <hr class="divider">
       
@@ -592,7 +603,7 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
             <section id="controller" class="doc-section">
                 <h3>Controller 控制器</h3>
                 <div class="alert alert-info">
-                    <p>Controller是Minima示教器的核心控制模块，提供直观的图形界面来控制机械臂。</p>
+                    <p>Controller是Robonana的核心控制模块，提供直观的图形界面来控制机械臂。</p>
                 </div>
 
                 <h4>连接控制</h4>
@@ -1064,7 +1075,7 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
                     <li>
                         <strong>版本 1.0 (2024-09-10)</strong>
                         <ul>
-                            <li>Minima示教器软件正式版发布</li>
+                            <li>Robonana软件正式版发布</li>
                             <li>新增ROS集成功能</li>
                             <li>优化了Controller的用户界面</li>
                             <li>修复了一些已知的稳定性问题</li>
@@ -1073,7 +1084,7 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
                     <li>
                         <strong>版本 1.0-beta (2024-09-01)</strong>
                         <ul>
-                            <li>Minima示教器软件测试板发布</li>
+                            <li>Robonana软件测试板发布</li>
                             <li>包含Controller基本功能</li>
                         </ul>
                     </li>

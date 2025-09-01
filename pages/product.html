@@ -9,7 +9,7 @@ comments: false
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minima 教育机械臂 - 开启机器人学习之旅</title>
+    <title>Minima 教育机械臂</title>
     <style>
         /* 产品页内容容器 */
         .product-content {
@@ -116,63 +116,18 @@ comments: false
             text-align: center;
         }
 
-        .product-content .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        .product-content .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #333;
         }
 
-        .product-content .feature-item {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .product-content .hero .tagline {
+            font-size: 1.2rem;
+            color: #666;
         }
 
-        .product-content .specs ul {
-            list-style-type: none;
-            max-width: 600px;
-            margin: 0 auto;
-        }
 
-        .product-content .specs li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .product-content .buy {
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-            padding: 6rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .product-content .buy h2 {
-            margin-bottom: 1.5rem;
-        }
-
-        .product-content .buy .price {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .product-content .buy .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background-color: #fff;
-            color: #000;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .product-content .buy .cta-button:hover {
-            background-color: #f0f0f0;
-            transform: translateY(-2px);
-        }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
@@ -190,100 +145,20 @@ comments: false
             }
             
             .product-content .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
-            .product-content .feature-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .product-content .platform-icons {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-            
-            .product-content .specs ul {
-                padding: 0 1rem;
-            }
-            
-            .product-content .buy {
+            .product-content .hero {
                 padding: 4rem 1rem;
             }
+            
             .product-content .product-select select {
                 width: 100%;
                 min-width: unset;
             }
         }
 
-        /* 生态标题居中 */
-        .product-content .features {
-            text-align: center;
-            padding: 4rem 2rem;
-        }
 
-        .product-content .features h2 {
-            margin-bottom: 2rem;
-        }
-
-        /* 平台支持部分样式 */
-        .product-content .platform-support {
-            text-align: center;
-            padding: 4rem 2rem;
-            background-color: #f5f5f5;
-        }
-
-        .product-content .platform-support h2 {
-            margin-bottom: 1.5rem;
-        }
-
-        .product-content .platform-support p {
-            margin-bottom: 2rem;
-        }
-
-        /* 平台图标容器样式 */
-        .product-content .platform-icons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            margin: 0 auto;
-            max-width: 600px;
-        }
-
-        .product-content .platform-icons img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
-
-        /* 规格部分样式调整 */
-        .product-content .specs {
-            padding: 4rem 2rem;
-            text-align: center;
-            background-color: #fff;
-        }
-
-        .product-content .specs h2 {
-            margin-bottom: 2rem;
-        }
-
-        .product-content .specs ul {
-            list-style-type: none;
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-            padding: 0 2rem;
-        }
-
-        .product-content .specs li {
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        /* 调整滚动定位的偏移量 */
-        .product-content section[id] {
-            scroll-margin-top: 80px;
-        }
     </style>
 </head>
 <body>
@@ -291,8 +166,10 @@ comments: false
         <header>
             <nav>
                 <div class="product-select">
-                    <select>
-                        <option value="Minima">Minima 教育机械臂</option>
+                    <select id="productSelector" onchange="navigateToProduct(this.value)">
+                        <option value="minima">Minima 教育机械臂</option>
+                        <option value="maxima" disabled>Maxima Pro (即将推出)</option>
+                        <option value="robonana" disabled>Robonana</option>
                     </select>
                 </div>
                 <ul>
@@ -306,95 +183,38 @@ comments: false
 
         <main>
             <section id="home" class="hero">
-                <h1>MINIMA 教育机械臂</h1>
-                <p class="tagline">一只手就能拿得起 却牛逼得不行</p>
-                <img src="/assets/images/5.jpg" alt="Minima 教育机械臂" class="product-image">
-            </section>
-
-            <section id="features" class="features">
-                <h2>生态 好吓人</h2>
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <h3>多语言支持</h3>
-                        <p>支持Python、C++等多种编程语言，适合不同层次的学习需求</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>上位机</h3>
-                        <p>别再拿你的机械臂当拖拉机玩！信号处理+通讯协议+模拟急停+速度控制。正逆运动学算法+路径规划器+碰撞检测+模拟器+工作区域分析全套内置。</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>配置各种URDF</h3>
-                        <p>URDF一键配置,多种机械臂以Move Group形式配置,兼容1234567轴。</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>同步施教</h3>
-                        <p>通过上位机和电位器控制器进行同步机械臂姿态,为Ahola自由做准备</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>视觉控制</h3>
-                        <p>2D视觉(MediaPipe),深度视觉(ZED)</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>校准功能</h3>
-                        <p>内置校准程序，确保舵机精确位置</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>拓展</h3>
-                        <p>提供丰富的GPIO接口, 支持蓝牙/无线通讯及多种外部设备扩展</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>ROS支持</h3>
-                        <p>兼容ROS/ROS2系统, 一键配置ROS/ROS2, RVIZ及MOVEIT!</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>G-code指令</h3>
-                        <p>支持G-code常用指令(LIN,PTP,CIRC,HOME), 可用于3D打印和初级工业用途</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>大预言模型</h3>
-                        <p>OpenAI, DeepSeek, HuggingFace Models多模型调用,通过LLM-chains生成机械臂管家及语音控制，离贾维斯更近一步。</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>扩展末端执行器</h3>
-                        <p>快速更换多种末端执行器，如夹爪、吸盘等</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>定制你的服务</h3>
-                        <p>机械臂颜色定制,机械臂3D打印服务,售后论坛持续升级。</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="platform-support">
-                <h2>全平台开发(Windows, MacOS, Linux)</h2>
-                <div class="platform-icons">
-                    <img src="/assets/images/windows.png" alt="Windows" style="width: 50px; height: 50px;">
-                    <img src="/assets/images/macos.png" alt="macOS" style="width: 45px; height: 45px;">
-                    <img src="/assets/images/linux.png" alt="Linux" style="width: 45px; height: 45px;">
-                </div>
-            </section>
-
-            <section id="specs" class="specs">
-                <h2>技术规格</h2>
-                <ul>
-                    <li>有效负载: 500g</li>
-                    <li>工作半径: 150mm</li>
-                    <li>重复定位精度: ±0.5mm</li>
-                    <li>自由度: 5</li>
-                    <li>控制系统: Open loop</li>
-                    <li>通信接口: USB, Wi-Fi</li>
-                    <li>编程支持: Python, C++等</li>
-                    <li>控制器: Arduino, ESP32</li>
-                    <li>软件兼容: ROS, RobotDK, MATLAB</li>
-                </ul>
-            </section>
-
-            <section id="buy" class="buy">
-                <h2>立即购买</h2>
-                <p class="price">￥9,999 起</p>
-                <a href="#" class="cta-button">预订 Minima 教育机械臂</a>
+                <h1>选择您的产品</h1>
+                <p class="tagline">请从上方下拉菜单选择产品查看详情</p>
             </section>
         </main>
     </div>
+
+    <script>
+        // 导航到对应的产品页面
+        function navigateToProduct(productKey) {
+            if (!productKey) return;
+            
+            switch(productKey) {
+                case 'minima':
+                    window.location.href = '/product/minima/';
+                    break;
+                case 'maxima':
+                    // 未来可以跳转到 maxima 页面
+                    // window.location.href = '/product/maxima/';
+                    break;
+                case 'robonana':
+                    // 未来可以跳转到 robonana 页面
+                    // window.location.href = '/product/robonana/';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // 页面加载完成后默认跳转到 minima 产品
+        document.addEventListener('DOMContentLoaded', function() {
+            navigateToProduct('minima');
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,425 @@
+---
+layout: page
+title: 
+permalink: "/product/minima/"
+comments: false
+---
+
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minima 教育机械臂 - 机械臂的最小可能方案</title>
+    <style>
+        /* 复制 product.html 中的样式 */
+        .product-content {
+            margin-top: 20px;
+        }
+
+        .product-content .product-nav {
+            background-color: #000;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-content nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-content nav ul {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            height: 100%;
+        }
+
+        .product-content nav ul li {
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .product-content nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.75rem;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .product-content nav ul li a:hover {
+            background-color: #f5f5f5;
+            color: #000;
+        }
+
+        .product-content .product-select {
+            position: relative;
+            display: inline-block;
+        }
+
+        .product-content .product-select select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: transparent;
+            color: #333;
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            min-width: 220px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .product-content .product-select::after {
+            content: '▼';
+            font-size: 0.8em;
+            color: #666;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .product-content .hero {
+            background-image: url('/assets/images/5.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 8rem;
+        }
+
+        .product-content .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .product-content .hero h1,
+        .product-content .hero p {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+        }
+
+        .product-content .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .product-content .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .product-content .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-content .feature-item {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-content .features {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .product-content .features h2 {
+            margin-bottom: 2rem;
+        }
+
+        .product-content .platform-support {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .product-content .platform-support h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .product-content .platform-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .product-content .platform-icons img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .product-content .specs {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .product-content .specs h2 {
+            margin-bottom: 2rem;
+        }
+
+        .product-content .specs ul {
+            list-style-type: none;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 0 2rem;
+        }
+
+        .product-content .specs li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-content .buy {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 6rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .product-content .buy h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .product-content .buy .price {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-content .buy .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .product-content .buy .cta-button:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .product-content section[id] {
+            scroll-margin-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .product-content nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .product-content nav ul {
+                margin-top: 1rem;
+            }
+            
+            .product-content .product-select {
+                margin-top: 1rem;
+            }
+            
+            .product-content .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .product-content .hero {
+                min-height: 50vh;
+                padding: 4rem 1rem;
+            }
+            
+            .product-content .hero .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .product-content .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-content .platform-icons {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .product-content .specs ul {
+                padding: 0 1rem;
+            }
+            
+            .product-content .buy {
+                padding: 4rem 1rem;
+            }
+            .product-content .product-select select {
+                width: 100%;
+                min-width: unset;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="product-content">
+        <header>
+            <nav>
+                <div class="product-select">
+                    <select onchange="navigateToProduct(this.value)">
+                        <option value="minima" selected>Minima 教育机械臂</option>
+                        <option value="maxima" disabled>Maxima Pro (即将推出)</option>
+                        <option value="robonana" disabled>Robonana</option>
+                    </select>
+                </div>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#features">生态</a></li>
+                    <li><a href="#specs">规格</a></li>
+                    <li><a href="#buy">购买</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home" class="hero">
+                <h1>MINIMA 教育机械臂</h1>
+                <p class="tagline">一只手就能拿得起 却牛逼得不行</p>
+            </section>
+
+    <section id="features" class="features">
+        <h2>生态 好吓人</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h3>基础功能</h3>
+                <p>通讯协议，运动速度控制，正逆运动学，模拟器，工作区域分析，固件烧录，TCP偏移等</p>
+            </div>
+            <div class="feature-item">
+                <h3>路径规划与优化</h3>
+                <p>CHOMP/RRT*规划+笛卡尔空间插值，多轨迹优化方法（Linear, Trapezoidal, S-Curve等），物体碰撞检测和自碰撞检测</p>
+            </div>
+            <div class="feature-item">
+                <h3>视觉应用</h3>
+                <p>Eye-to-hand(手在眼外)和Eye-in-Hand(手在眼内)标定。Charuco 标定板生成。相机内参计算。颜色物体ROI检测，模板检测等</p>
+            </div>
+            <div class="feature-item">
+                <h3>专业机械臂语言</h3>
+                <p>类工业机械臂指令(LIN,PTP,JTJ,CIRC,HOME,DELAY,TOOL,M280,SPD等)；文本转GCODE指令；预览轨迹；执行，暂停和停止</p>
+            </div>
+            <div class="feature-item">
+                <h3>ROS</h3>
+                <p>一键配置Ubuntu和ROS1/ROS2环境，ROS Serial/ROS2 micro-ROS通讯，RVIZ和MoveIt!配置。</p>
+            </div>
+            <div class="feature-item">
+                <h3>校准/设置</h3>
+                <p>内置接口校准舵机归零和上下限位置，保存至机械臂控制器，无需二次校准。各电机速度单独配置和全局sin2优化。UI设置和规划器设置</p>
+            </div>
+            <div class="feature-item">
+                <h3>拓展功能</h3>
+                <p>GPIO接口，VCC/GND接口，支持拓展外部元件。支持蓝牙和无线开发。</p>
+            </div>
+            <div class="feature-item">
+                <h3>末端工具</h3>
+                <p>支持常见的夹爪，吸盘，和持笔器，并配备对应的URDF。支持工具电路接口快换(仅MINIMA PRO)</p>
+            </div>
+            <div class="feature-item">
+                <h3>LLM管家</h3>
+                <p>大语言模型负责上位机软件Q&A，支持通过语音识别及LLM-Chain生成指令控制机械臂。多种模型支持(OpenAI, Hugging Face, DeepSeek等)</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="platform-support">
+        <h2>全平台开发(Windows, MacOS, Linux)</h2>
+        <div class="platform-icons">
+            <img src="/assets/images/windows.png" alt="Windows" style="width: 50px; height: 50px;">
+            <img src="/assets/images/macos.png" alt="macOS" style="width: 45px; height: 45px;">
+            <img src="/assets/images/linux.png" alt="Linux" style="width: 45px; height: 45px;">
+        </div>
+    </section>
+
+    <section id="specs" class="specs">
+        <h2>技术规格</h2>
+        <ul>
+            <li>有效负载: 500g</li>
+            <li>工作半径: 150mm</li>
+            <li>重复定位精度: ±0.5mm</li>
+            <li>自由度: 4</li>
+            <li>控制系统: Open loop</li>
+            <li>通信接口: USB, Wi-Fi</li>
+            <li>编程支持: Python, C++等</li>
+            <li>控制器: Arduino, ESP32</li>
+            <li>软件兼容: ROS, RobotDK, MATLAB</li>
+        </ul>
+    </section>
+
+            <section id="buy" class="buy">
+                <h2>立即购买</h2>
+                <p class="price">￥799 起</p>
+                <a href="#" class="cta-button">预订 Minima 教育机械臂</a>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // 导航到对应的产品页面
+        function navigateToProduct(productKey) {
+            if (!productKey) return;
+            
+            switch(productKey) {
+                case 'minima':
+                    // 已经在 minima 页面，无需跳转
+                    break;
+                case 'maxima':
+                    // 未来可以跳转到 maxima 页面
+                    // window.location.href = '/product/maxima/';
+                    break;
+                case 'robonana':
+                    // 未来可以跳转到 robonana 页面
+                    // window.location.href = '/product/robonana/';
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
