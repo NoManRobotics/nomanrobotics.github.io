@@ -21,3 +21,8 @@ group :jekyll_plugins do
     gem 'tzinfo-data'
     gem 'tzinfo'
 end
+gem "csv", "~> 3.3"
+
+gem "logger", "~> 1.7"
+
+gem "base64", "~> 0.3.0"

@@ -76,6 +76,52 @@ code {
     color: #0c5460;
 }
 
+/* 分隔线样式 */
+hr.divider {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #e9ecef;
+}
+
+/* 段落和标题间距 */
+.techsupport-container p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.techsupport-container h1 {
+    margin-top: 35px;
+    margin-bottom: 25px;
+}
+
+.techsupport-container h2 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.techsupport-container h3 {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.techsupport-container h4 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.techsupport-container ul,
+.techsupport-container ol {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.techsupport-container li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
 /* 导航栏样式修改，避免影响全局导航 */
 .idocs-navigation {
     position: sticky;
@@ -153,7 +199,8 @@ code {
     <!-- Sidebar Navigation -->
     <div class="idocs-navigation bg-light">
         <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link active" href="#item_1">Minima</a>
+            <li class="nav-item"><a class="nav-link active" href="#terminology">Terminology</a></li>
+            <li class="nav-item"><a class="nav-link" href="#item_1">Minima</a>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a class="nav-link" href="#item_1_1">用户手册</a></li>
                     <li class="nav-item"><a class="nav-link" href="#item_1_2">软件下载</a></li>
@@ -177,10 +224,9 @@ code {
     <!-- Docs Content -->
     <div class="idocs-content">
         <div class="container"> 
-            <!-- Item 1 -->
-            <section id="item_1">
-                <h1>Minima</h1>
-                <p>Minima是一款五轴舵机机械臂,它的制造相对于工业机械臂来说成本较低。但是作为教育级用途, 我们希望能够通过Minima让大家快速上手并了解机械臂的完整工作流程。</p>
+            <!-- Terminology -->
+            <section id="terminology">
+                <h1>Terminology</h1>
                 <img src="/assets/images/robot_arm_system.png" alt="Minima机械臂系统架构" class="img-fluid" style="max-width: 450px; display: block; margin-left: auto; margin-right: auto; padding: 20px 0;">
                 <p>工业机械臂平台架构主要包括机械臂本体、电源供应、控制器、传感器和中央处理器（电脑）。我们的教育机械臂展现了工业机械臂的核心组成部分，但采用了更经济实惠的替代方案：</p>
                 <table class="table table-bordered">
@@ -188,7 +234,7 @@ code {
                         <tr>
                             <th>系统组成</th>
                             <th>工业机械臂</th>
-                            <th>Minima教育机械臂</th>
+                            <th>MINIMA</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -214,33 +260,100 @@ code {
                         </tr>
                         <tr>
                             <td>计算机系统</td>
-                            <td>专业优化的操作系统</td>
+                            <td>根据时间严格把控优先级的操作系统</td>
                             <td>普通家用电脑</td>
                         </tr>
                     </tbody>
                 </table>
                 
-                <p>本页面将指导您完成从环境准备到实际操作Minima的各项流程。</p>
-                <h4>快速导航：</h4>
+                <h3>机械臂基础术语</h3>
+                
+                <h4>关节类型 (Joint Types)</h4>
                 <ul>
-                    <li>Minima
+                    <li><strong>Revolute (旋转关节)</strong> - 允许绕固定轴旋转的关节，类似于门的铰链。这是机械臂中最常见的关节类型，具有一个旋转自由度，运动范围通常在0°到360°之间。</li>
+                    <li><strong>Prismatic (移动关节)</strong> - 允许沿直线方向移动的关节，类似于活塞运动。具有一个平移自由度，常见于龙门式机械臂或伸缩臂中。</li>
+                    <li><strong>Continuous (连续关节)</strong> - 可以无限制地连续旋转的关节，没有角度限制，常用于末端旋转轴或传送带系统。</li>
+                    <li><strong>Fixed (固定关节)</strong> - 没有运动自由度的连接，用于固定连接两个刚体部分，常用于结构性连接或工具安装。</li>
+                </ul>
+
+                <h4>自由度 (Degrees of Freedom, DOF)</h4>
+                <p><strong>自由度</strong>是指机械臂在空间中独立运动的方向数量。一个物体在三维空间中最多有6个自由度：3个平移自由度（X、Y、Z轴方向）和3个旋转自由度（绕X、Y、Z轴旋转）。</p>
+                <ul>
+                    <li><strong>关节自由度</strong> - 机械臂的总关节数，每个独立关节提供一个自由度。例如，Minima机械臂有5个旋转关节，即5个自由度。</li>
+                    <li><strong>末端自由度</strong> - 机械臂末端执行器在空间中可以实现的独立运动数量。要完全控制末端的位置和姿态，通常需要6个自由度。</li>
+                    <li><strong>冗余自由度</strong> - 当机械臂的关节数超过6个时，额外的自由度可以提供更灵活的路径规划和避障能力。</li>
+                </ul>
+
+                <h4>传动系统</h4>
+                <ul>
+                    <li><strong>减速比 (Gear Ratio)</strong> - 电机转速与输出转速之比。较高的减速比可以提供更大的扭矩和更高的精度，但会降低运动速度。例如，减速比为100:1意味着电机旋转100圈，输出轴只旋转1圈。</li>
+                    <li><strong>扭矩 (Torque)</strong> - 关节产生的旋转力，通常以牛顿·米(N·m)为单位。更大的扭矩允许机械臂举起更重的负载。</li>
+                    <li><strong>负载能力 (Payload Capacity)</strong> - 机械臂末端可以承载的最大重量，受关节扭矩和机械结构强度的限制。</li>
+                </ul>
+
+                <h4>运动学 (Kinematics)</h4>
+                <ul>
+                    <li><strong>正向运动学 (Forward Kinematics, FK)</strong> - 已知各关节的角度，计算机械臂末端执行器在空间中的位置和姿态。这是一个直接的数学计算过程，通常使用DH参数（Denavit-Hartenberg参数）和齐次变换矩阵来实现。</li>
+                    <li><strong>逆向运动学 (Inverse Kinematics, IK)</strong> - 已知末端执行器期望的位置和姿态，反向计算各关节需要的角度。这是一个更复杂的问题，可能存在多个解、无解或无穷多解的情况。常用算法包括解析解法、几何法和数值迭代法（如Jacobian方法、LM算法等）。</li>
+                    <li><strong>工作空间 (Workspace)</strong> - 机械臂末端执行器可以到达的所有位置的集合。工作空间分析对于任务规划和安全评估至关重要。</li>
+                    <li><strong>奇异点 (Singularity)</strong> - 机械臂在某些配置下，会失去一个或多个自由度的位置。在奇异点附近，微小的末端运动可能需要关节的极大速度变化。</li>
+                </ul>
+
+                <h4>轨迹与路径规划</h4>
+                <ul>
+                    <li><strong>路径规划 (Path Planning)</strong> - 确定机械臂从起始位置到目标位置的运动路线，考虑避障、关节限位等约束条件。常见算法包括RRT（快速随机树）、PRM（概率路线图）等。</li>
+                    <li><strong>轨迹规划 (Trajectory Planning)</strong> - 在路径基础上，进一步确定机械臂在每个时刻的位置、速度和加速度，确保运动平滑且在物理限制范围内。</li>
+                    <li><strong>路径优化 (Path Optimization)</strong> - 对已规划的路径进行优化，目标可能包括：最短路径、最短时间、最小能耗、最平滑运动等。常用方法有CHOMP（协方差哈密顿优化）、TrajOpt等。</li>
+                    <li><strong>插补 (Interpolation)</strong> - 在两个路径点之间生成平滑的中间点，常见的插补方式包括：
                         <ul>
-                            <li><a href="#item_1_1">用户手册</a></li>
-                            <li><a href="#item_1_2">软件下载</a></li>
-                            <li><a href="#item_1_3">ROS配置指南</a></li>
-                            <li><a href="#item_1_4">ROS2配置指南</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#item_2">Noman-app</a>
-                        <ul>
-                            <li><a href="#controller">Controller</a></li>
-                            <li><a href="#anytroller">Anytroller</a></li>
-                            <li><a href="#ros">ROS</a></li>
-                            <li><a href="#kinematics">Kinematics</a></li>
-                            <li><a href="#firmware">Firmware</a></li>
+                            <li><strong>线性插补 (Linear)</strong> - 末端执行器沿直线移动</li>
+                            <li><strong>关节插补 (Joint)</strong> - 各关节以固定速度比同步运动</li>
+                            <li><strong>圆弧插补 (Circular)</strong> - 末端执行器沿圆弧路径移动</li>
+                            <li><strong>样条插补 (Spline)</strong> - 使用样条曲线生成平滑轨迹</li>
                         </ul>
                     </li>
                 </ul>
+
+                <h4>运动控制</h4>
+                <ul>
+                    <li><strong>PTP (Point-to-Point)</strong> - 点到点运动，机械臂以最快速度从当前位置移动到目标位置，不保证路径形状，通常用于无障碍环境下的快速移动。</li>
+                    <li><strong>LIN (Linear)</strong> - 线性运动，末端执行器沿直线路径移动到目标位置，适用于需要精确路径的应用，如焊接、涂胶等。</li>
+                    <li><strong>CIRC (Circular)</strong> - 圆弧运动，末端执行器沿圆弧路径移动，需要指定中间点或圆心，常用于曲线轨迹跟踪。</li>
+                    <li><strong>速度控制 (Velocity Control)</strong> - 控制机械臂运动的速度，包括关节速度和末端笛卡尔速度。</li>
+                    <li><strong>加速度限制 (Acceleration Limits)</strong> - 限制运动的加速度，以保护机械结构和提高运动平滑性。</li>
+                </ul>
+
+                <h4>坐标系统</h4>
+                <ul>
+                    <li><strong>基坐标系 (Base Frame)</strong> - 固定在机械臂基座上的参考坐标系，作为整个机械臂的基准。</li>
+                    <li><strong>工具坐标系 (Tool Frame, TCP)</strong> - 固定在末端工具上的坐标系，TCP（Tool Center Point）是工具的控制点，通常是工具的尖端或中心。</li>
+                    <li><strong>工件坐标系 (Workpiece Frame)</strong> - 固定在工件上的坐标系，方便编程时以工件为参考。</li>
+                    <li><strong>关节空间 (Joint Space)</strong> - 以各关节角度为变量描述机械臂状态的空间。</li>
+                    <li><strong>笛卡尔空间 (Cartesian Space)</strong> - 以末端执行器的位置(X, Y, Z)和姿态(Roll, Pitch, Yaw)描述的空间。</li>
+                </ul>
+
+                <h4>机器人描述格式</h4>
+                <ul>
+                    <li><strong>URDF (Unified Robot Description Format)</strong> - 统一机器人描述格式，使用XML语法描述机器人的物理结构、关节、连杆和传感器等信息，是ROS系统中的标准格式。</li>
+                    <li><strong>Xacro</strong> - URDF的扩展格式，支持宏定义、参数化和模块化，使机器人描述更加简洁和可维护。</li>
+                    <li><strong>DH参数 (Denavit-Hartenberg Parameters)</strong> - 一种用四个参数描述相邻连杆之间关系的标准方法，包括连杆长度(a)、连杆扭角(α)、关节偏移(d)和关节角(θ)。</li>
+                </ul>
+
+                <h4>控制与通信</h4>
+                <ul>
+                    <li><strong>PID控制</strong> - 比例-积分-微分控制器，是最常用的闭环控制算法，用于精确控制关节位置和速度。</li>
+                    <li><strong>串口通信 (Serial Communication)</strong> - 通过串行端口进行数据传输，常用协议包括RS-232、RS-485等。</li>
+                    <li><strong>I2C协议</strong> - 一种同步串行通信协议，适用于短距离、低速设备间的通信，Minima使用I2C协议控制舵机。</li>
+                    <li><strong>CAN总线</strong> - 控制器局域网，工业机械臂常用的实时通信协议，具有高可靠性和抗干扰能力。</li>
+                    <li><strong>实时控制 (Real-time Control)</strong> - 保证控制指令在规定时间内执行，对机械臂的稳定性和精度至关重要。</li>
+                </ul>
+
+                <p>了解这些基础术语将帮助您更好地理解机械臂的工作原理和控制方法。本页面后续内容将指导您完成从环境准备到实际操作Minima机械臂的各项流程。</p>
+            </section>
+            <hr class="divider">
+            <!-- Item 1 -->
+            <section id="item_1">
+                <h1>Minima</h1>
             </section>
             <hr class="divider">
             <!-- Item 1.1 -->
@@ -260,8 +373,8 @@ code {
                 </ul>
 
                 <h4>2. 装配</h4>
-                <p>请安装详细装配图对机械臂进行安装：<a href="" target="_blank" style="text-decoration: underline; color: purple;">下载装配图</a></p>
-                <p>请根据电路图对内部电路进行确认和维护: <a href="" target="_blank" style="text-decoration: underline; color: purple;">下载电路图</a></p>
+                <p>请安装详细装配图对机械臂进行安装：<a href="/assets/data/assembly-minima.pdf" target="_blank" style="text-decoration: underline; color: purple;">下载装配图</a></p>
+                <p>请根据电路图对内部电路进行确认和维护: <a href="/assets/data/electronic-minima.jpg" target="_blank" style="text-decoration: underline; color: purple;">下载电路图</a></p>
                 
                 <h4>3. 注意事项</h4>
                 <ul>
@@ -281,20 +394,16 @@ code {
             <!-- Item 1.2 -->
             <section id="item_1_2">
                 <h3>软件下载</h3>
-                <p>如果您不使用电位器控制器，可以下载我们提供的通用软件来控制 Minima 机械臂。我们为不同操作系统提供了相应的软件版本。</p>
+                <p>如果您不使用电位器控制器，可以下载我们提供的通用软件来控制 Minima 机械臂。我们为不同操作系统（Windows、macOS、Linux）提供了相应的软件版本。</p>
                 
-                <h4>上位机软件下载</h4>
-                <ul>
-                    <li><strong>Windows：</strong> <a href="#" target="_blank" style="text-decoration: underline; color: purple;">下载 Windows 版本</a></li>
-                    <li><strong>macOS：</strong> <a href="#" target="_blank" style="text-decoration: underline; color: purple;">下载 macOS 版本</a></li>
-                    <li><strong>Linux：</strong> <a href="#" target="_blank" style="text-decoration: underline; color: purple;">下载 Linux 版本</a></li>
-                </ul>
+                <h4>上位机软件Noman-app</h4>
+                <p>请访问我们的 GitHub Releases 页面下载适合您操作系统的最新版本：</p>
+                <p><a href="https://github.com/NoManRobotics/noman-app/releases" target="_blank" style="text-decoration: underline; color: purple; font-size: 16px;">下载 Noman-app（Windows, MacOS, Ubuntu）</a></p>
 
-                <h4>使用说明</h4>
-                <p>下载并安装适合您操作系统的版本后，请参考软件内的使用说明进行操作。如遇到任何问题，请查看我们的<a href="#" target="_blank" style="text-decoration: underline; color: purple;">常见问题解答</a>或联系我们的技术支持。</p>
+                <p>下载并安装适合您操作系统的版本后，请参考<a href="#item_2" style="text-decoration: underline; color: black;">软件使用说明</a>进行操作。如遇到任何问题，请联系我们的技术支持。</p>
 
                 <h4>机械臂主控固件</h4>
-                <p><strong>注意：</strong>机械臂主控固件已预先安装在您的机械臂中，用户通常无需自行下载或安装。如果您需要重新安装固件或进行手动更新，可以从以下链接下载最新版本的固件：<a href="https://github.com/NoManRobotics/Minima-releases" target="_blank" style="text-decoration: underline; color: purple;">下载 Minima 机械臂固件</a></p>
+                <p><strong>注意：</strong>机械臂主控固件已预先安装在您的机械臂中，用户通常无需自行下载或安装。如果您需要重新安装固件或进行手动更新，可以从以下链接下载最新版本的固件：<a href="https://github.com/NoManRobotics/minima-firmware" target="_blank" style="text-decoration: underline; color: purple;">下载 Minima 机械臂固件</a></p>
                 
                 <p>我们建议通过软件自动烧录固件。只需在Noman-app中找到"固件"选项，然后按照提示进行操作烧录最新固件。</p>
             </section>
@@ -576,7 +685,9 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
             <hr class="divider">
             <section id="item_2">
                 <h1>Noman-app</h1>
-                <p>Noman-app起初设计用于Minima机械臂控制，但现在支持了第三方机械臂适配，提供直观的图形界面来控制机械臂。它包含以下主要功能模块：</p>
+                <p>Noman-app是一个轻量级、跨平台的机械臂用户界面。它为路径规划、碰撞避免和自动化提供了易用的解决方案。同时，后端结合了路径规划与自动化功能，如PTP、LIN和CIRC运动，这些功能通常出现在KRL和RoboDK等工业级应用中。</p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/NoManRobotics/noman-app" target="_blank" style="text-decoration: underline; color: purple;">https://github.com/NoManRobotics/noman-app</a></p>
+                <p>Noman-app包含以下主要功能模块：</p>
                 
                 <ul>
                     <li><strong>机器人配置</strong> - 机器人描述和配置管理, 用于添加和配置第三方机械臂</li>
@@ -596,6 +707,14 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
             <section id="robot_profile">
                 <h3>Robot Profile</h3>
                 <p>Robot Profile是Noman-app的机器人描述和配置管理系统，用于添加和配置第三方机械臂。</p>
+                
+                <h4>配置步骤</h4>
+                <ol>
+                    <li><strong>增加配置</strong> - 点击左上角加号添加配置，需要用户导入机械臂的URDF/Xacro描述文件进行配置。注意，描述文件中的mesh推荐使用STL格式。</li>
+                    <li><strong>配置关节组</strong> - 默认Group A为机械臂的main group，并对每个关节进行组分配。增加组以分配诸如末端工具等关节类型。</li>
+                    <li><strong>归零位姿</strong> - 点击需要设置的main group后会在右侧显示所有该组关节，拖动滑块以设置机械臂默认的归零关节角度以及关节极限角度。</li>
+                    <li><strong>配置末端</strong> - 当一个组不属于需要正逆求解的连续关节，我们将它分配为工具组。一般工具组中的关节类型不为Revolute。同时我们可以设置工具坐标偏移，以正确反映工具的预期到达点位姿。</li>
+                </ol>
             </section>
             <hr class="divider">
       
