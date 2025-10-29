@@ -155,6 +155,130 @@ comments: false
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        .product-content .noman-app-intro {
+            padding: 3rem 2rem;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        .product-content .noman-app-intro .intro-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-content .noman-app-intro .app-label {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .product-content .noman-app-intro .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-content .noman-app-intro .intro-card {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: relative;
+            padding-top: 2rem;
+        }
+
+        .product-content .noman-app-intro .intro-card::before {
+            content: '';
+            position: absolute;
+            top: 0.75rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            height: 3px;
+            background-color: #000;
+        }
+
+        .product-content .noman-app-intro .intro-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .product-content .noman-app-intro .intro-card .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .product-content .noman-app-intro .intro-card .content {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .product-content .noman-app-intro .intro-image,
+        .product-content .noman-app-intro .intro-image-large {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .product-content .noman-app-intro .intro-image img {
+            max-width: 70%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-content .noman-app-intro .intro-image-large img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-content .noman-app-intro .image-carousel {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .product-content .noman-app-intro .carousel-arrow {
+            background-color: transparent;
+            color: #333;
+            border: none;
+            width: 50px;
+            height: 50px;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 300;
+            outline: none;
+        }
+        
+        .product-content .noman-app-intro .carousel-arrow:focus {
+            outline: none;
+        }
+
+        .product-content .noman-app-intro .carousel-arrow:hover {
+            color: #000;
+            transform: scale(1.2);
+        }
+
+        .product-content .noman-app-intro .carousel-arrow:active {
+            transform: scale(0.9);
+        }
+
+        .product-content .noman-app-intro .carousel-image-wrapper {
+            flex: 1;
+            text-align: center;
+            max-width: 90%;
+        }
+
         .product-content .features {
             text-align: center;
             padding: 4rem 2rem;
@@ -191,20 +315,36 @@ comments: false
 
         .product-content .specs {
             padding: 4rem 2rem;
-            text-align: center;
             background-color: #fff;
+        }
+
+        .product-content .specs-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .product-content .specs h2 {
             margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .product-content .specs-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            gap: 3rem;
+        }
+
+        .product-content .specs-left {
+            flex: 1;
+            max-width: 500px;
         }
 
         .product-content .specs ul {
             list-style-type: none;
-            max-width: 600px;
-            margin: 0 auto;
+            margin: 0;
             text-align: left;
-            padding: 0 2rem;
+            padding: 0;
         }
 
         .product-content .specs li {
@@ -212,21 +352,55 @@ comments: false
             border-bottom: 1px solid #eee;
         }
 
+        .product-content .specs-right {
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-content .specs-right img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
         .product-content .buy {
-            background-color: #000;
+            background-image: url('/assets/images/buy_background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: #fff;
             text-align: center;
             padding: 6rem 2rem;
             margin-top: 4rem;
+            position: relative;
+        }
+
+        .product-content .buy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
         .product-content .buy h2 {
             margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .product-content .buy .price {
             font-size: 2.5rem;
             margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .product-content .buy .cta-button {
@@ -238,6 +412,8 @@ comments: false
             border-radius: 4px;
             font-weight: bold;
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
         }
 
         .product-content .buy .cta-button:hover {
@@ -276,6 +452,35 @@ comments: false
                 font-size: 1.2rem;
             }
             
+            .product-content .noman-app-intro .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-content .noman-app-intro .intro-image img,
+            .product-content .noman-app-intro .intro-image-large img {
+                max-width: 100%;
+            }
+
+            .product-content .noman-app-intro .image-carousel {
+                gap: 1rem;
+            }
+
+            .product-content .noman-app-intro .carousel-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 2.5rem;
+            }
+
+            .product-content .noman-app-intro .carousel-image-wrapper {
+                max-width: 100%;
+            }
+
+            .product-content .noman-app-intro .app-label {
+                position: static;
+                text-align: center;
+                margin-top: 2rem;
+            }
+
             .product-content .feature-grid {
                 grid-template-columns: 1fr;
             }
@@ -286,7 +491,17 @@ comments: false
             }
             
             .product-content .specs ul {
-                padding: 0 1rem;
+                padding: 0;
+            }
+
+            .product-content .specs-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .product-content .specs-left,
+            .product-content .specs-right {
+                max-width: 100%;
             }
             
             .product-content .buy {
@@ -306,15 +521,15 @@ comments: false
                 <div class="product-select">
                     <select onchange="navigateToProduct(this.value)">
                         <option value="minima" selected>Minima 教育机械臂</option>
-                        <option value="maxima" disabled>Maxima Pro (即将推出)</option>
-                        <option value="robonana" disabled>Robonana</option>
+                        <option value="copyme" disabled>Copyme (即将推出)</option>
+                        <option value="noman-app" disabled>Noman-App (即将推出)</option>
                     </select>
                 </div>
                 <ul>
                     <li><a href="#home">首页</a></li>
                     <li><a href="#features">生态</a></li>
                     <li><a href="#specs">规格</a></li>
-                    <li><a href="#buy">购买</a></li>
+                    <li><a href="https://item.taobao.com/item.htm?ft=t&id=981025990160&spm=a21dvs.23580594.0.0.37d82c1bflZ0OA" target="_blank">购买</a></li>
                 </ul>
             </nav>
         </header>
@@ -322,8 +537,39 @@ comments: false
         <main>
             <section id="home" class="hero">
                 <h1>MINIMA 教育机械臂</h1>
-                <p class="tagline">一只手就能拿得起 却牛逼得不行</p>
+                <p class="tagline">也许你不需要一个机械臂，而是一个解决方案</p>
             </section>
+
+    <section class="noman-app-intro">
+        <div class="intro-wrapper">
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <h4>专业指令</h4>
+                    <p class="subtitle">(常用于工业机械臂)</p>
+                    <p class="content">PTP, JTJ, LIN, HOME, CIRC, TOOL, M280等</p>
+                </div>
+                <div class="intro-card">
+                    <h4>多种轨迹优化</h4>
+                    <p class="subtitle">(关节空间同步, 笛卡尔空间插值)</p>
+                    <p class="content">线性, 梯形, S曲线, 多项式插值, Cubic B-spline</p>
+                </div>
+                <div class="intro-card">
+                    <h4>Text2Gcode</h4>
+                    <p class="subtitle">(文字转专业指令)</p>
+                    <p class="content">Bezier曲线插值生成文本轨迹(中文/英文/日文)</p>
+                </div>
+            </div>
+            <div class="intro-image-large">
+                <div class="image-carousel">
+                    <button class="carousel-arrow" onclick="changeImage(-1)">‹</button>
+                    <div class="carousel-image-wrapper">
+                        <img id="carousel-image" src="/assets/images/demo_minima.webp" alt="Minima 演示">
+                    </div>
+                    <button class="carousel-arrow" onclick="changeImage(1)">›</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="features" class="features">
         <h2>生态 好吓人</h2>
@@ -377,24 +623,32 @@ comments: false
     </section>
 
     <section id="specs" class="specs">
-        <h2>技术规格</h2>
-        <ul>
-            <li>有效负载: 500g</li>
-            <li>工作半径: 150mm</li>
-            <li>重复定位精度: ±0.5mm</li>
-            <li>自由度: 4</li>
-            <li>控制系统: Open loop</li>
-            <li>通信接口: USB, Wi-Fi</li>
-            <li>编程支持: Python, C++等</li>
-            <li>控制器: Arduino, ESP32</li>
-            <li>软件兼容: ROS, RobotDK, MATLAB</li>
-        </ul>
+        <div class="specs-wrapper">
+            <h2>技术规格</h2>
+            <div class="specs-container">
+                <div class="specs-left">
+                    <ul>
+                        <li>有效负载: 250g</li>
+                        <li>工作半径: 150mm</li>
+                        <li>重复定位精度: ±0.5mm</li>
+                        <li>自由度: 4</li>
+                        <li>控制系统: Open loop</li>
+                        <li>通信接口: USB, Wi-Fi, Bluetooth</li>
+                        <li>编程支持: Python, C++等</li>
+                        <li>控制器: Arduino, ESP32</li>
+                        <li>软件兼容: ROS, ROS2</li>
+                    </ul>
+                </div>
+                <div class="specs-right">
+                    <img src="/assets/images/minima_spec.jpg" alt="Minima 技术规格图">
+                </div>
+            </div>
+        </div>
     </section>
 
             <section id="buy" class="buy">
-                <h2>立即购买</h2>
                 <p class="price">￥799 起</p>
-                <a href="#" class="cta-button">预订 Minima 教育机械臂</a>
+                <a href="https://item.taobao.com/item.htm?ft=t&id=981025990160&spm=a21dvs.23580594.0.0.37d82c1bflZ0OA" target="_blank" class="cta-button">购买MINIMA 机械臂</a>
             </section>
         </main>
     </div>
@@ -408,16 +662,41 @@ comments: false
                 case 'minima':
                     // 已经在 minima 页面，无需跳转
                     break;
-                case 'maxima':
-                    // 未来可以跳转到 maxima 页面
-                    // window.location.href = '/product/maxima/';
+                case 'copyme':
+                    // 未来可以跳转到 copyme 页面
+                    // window.location.href = '/product/copyme/';
                     break;
-                case 'robonana':
-                    // 未来可以跳转到 robonana 页面
-                    // window.location.href = '/product/robonana/';
+                case 'noman-app':
+                    // 未来可以跳转到 noman-app 页面
+                    // window.location.href = '/product/noman-app/';
                     break;
                 default:
                     break;
+            }
+        }
+
+        // 图片轮播功能
+        const images = [
+            '/assets/images/demo_minima.webp',
+            '/assets/images/handeye.webp',
+            '/assets/images/chomp_minima.webp'
+        ];
+        let currentIndex = 0;
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            
+            // 循环切换
+            if (currentIndex >= images.length) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            }
+            
+            // 更新图片
+            const imgElement = document.getElementById('carousel-image');
+            if (imgElement) {
+                imgElement.src = images[currentIndex];
             }
         }
     </script>
