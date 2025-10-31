@@ -10,17 +10,17 @@ image: assets/images/3.jpg
   <h2>欢迎加入我们的机械臂社区!</h2>
   
   <section class="forum-section">
-    <h3>讨论论坛</h3>
-    <p>在我们的论坛上与其他用户交流经验、分享想法、寻求帮助。</p>
-    <a href="#" class="btn">进入论坛</a>
+    <h3>群论坛</h3>
+    <p>在我们的群论坛上与其他用户交流经验、分享想法、寻求帮助。</p>
+    <img src="{{site.baseurl}}/assets/images/qr_group.jpg" alt="群论坛二维码" class="qr-image">
   </section>
 
   <section class="social-media">
     <h3>社交媒体</h3>
     <p>关注我们的社交媒体账号,获取最新资讯:</p>
     <ul>
-      <li><a href="#">小红书</a></li>
-      <li><a href="#">Bilibili</a></li>
+      <li><a href="{{site.social.xiaohongshu}}" target="_blank">小红书</a></li>
+      <li><a href="{{site.social.bilibili}}" target="_blank">Bilibili</a></li>
     </ul>
   </section>
 
@@ -67,6 +67,15 @@ image: assets/images/3.jpg
     color: white;
     text-decoration: none;
     border-radius: 5px;
+  }
+  .qr-image {
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
   form {
     display: flex;
