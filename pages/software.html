@@ -210,11 +210,11 @@ hr.divider {
             </li>
             <li class="nav-item"><a class="nav-link" href="#item_2">Noman-app</a>
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="#controller">Controller</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#anytroller">Anytroller</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#ros">ROS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#kinematics">Kinematics</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#firmware">Firmware</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#robot_profile">Robot Profile 机器人配置</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#controller">Controller 控制器</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ros">ROS 接口</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kinematics">Kinematics 运动学</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#firmware">Firmware 固件管理</a></li>
                 </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="#item_3">Change Log</a></li>
@@ -693,7 +693,6 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
                 <ul>
                     <li><strong>机器人配置</strong> - 机器人描述和配置管理, 用于添加和配置第三方机械臂</li>
                     <li><strong>Controller控制器</strong> - 核心控制模块，提供基础的机械臂控制功能</li>
-                    <li><strong>Anytroller通用控制器</strong> - 提供任意机械臂的控制接口</li>
                     <li><strong>ROS接口</strong> - 与ROS系统的集成接口</li>
                     <li><strong>仿真器（Simulator）</strong> - 基于PyBullet的3D仿真环境</li>
                     <li><strong>Majordomo</strong> - LLM助手</li>
@@ -706,13 +705,20 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
 
             <!-- Robot Profile -->
             <section id="robot_profile">
-                <h3>Robot Profile</h3>
-                <p>Robot Profile是Noman-app的机器人描述和配置管理系统，用于添加和配置第三方机械臂。</p>
-                
+                <h3>Robot Profile 配置</h3>
+                <div class="alert alert-info">
+                    <p>Robot Profile是Noman-app的机器人描述和配置管理系统，用于添加和配置第三方机械臂。</p>
+                </div>
+
                 <h4>配置步骤</h4>
                 <ol>
                     <li><strong>增加配置</strong> - 点击左上角加号添加配置，需要用户导入机械臂的URDF/Xacro描述文件进行配置。注意，描述文件中的mesh推荐使用STL格式。</li>
-                    <li><strong>配置关节组</strong> - 默认Group A为机械臂的main group，并对每个关节进行组分配。增加组以分配诸如末端工具等关节类型。</li>
+                    <li><strong>配置关节组</strong> - 默认Group A为机械臂的main group，并对每个关节进行组分配。增加组以分配诸如末端工具等关节类型。
+                        <div style="margin-top: 15px; margin-bottom: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
+                            <img src="/assets/images/abb_profile_a.png" alt="ABB机器人配置界面A" class="img-fluid" style="flex: 1; min-width: 300px; max-width: 48%; border: 1px solid #e9ecef; border-radius: 4px;">
+                            <img src="/assets/images/abb_profile_b.png" alt="ABB机器人配置界面B" class="img-fluid" style="flex: 1; min-width: 300px; max-width: 48%; border: 1px solid #e9ecef; border-radius: 4px;">
+                        </div>
+                    </li>
                     <li><strong>归零位姿</strong> - 点击需要设置的main group后会在右侧显示所有该组关节，拖动滑块以设置机械臂默认的归零关节角度以及关节极限角度。</li>
                     <li><strong>配置末端</strong> - 当一个组不属于需要正逆求解的连续关节，我们将它分配为工具组。一般工具组中的关节类型不为Revolute。同时我们可以设置工具坐标偏移，以正确反映工具的预期到达点位姿。</li>
                 </ol>
@@ -723,168 +729,99 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
             <section id="controller" class="doc-section">
                 <h3>Controller 控制器</h3>
                 <div class="alert alert-info">
-                    <p>Controller是Noman-app的核心控制模块，提供直观的图形界面来控制机械臂。</p>
+                    <p>控制器提供基础的功能：MINIMA配置、关节空间角度控制、轨迹录制与重播等。</p>
                 </div>
 
-                <h4>连接控制</h4>
+                <h4>MINIMA 配置</h4>
+                <p>Controller支持两种控制模式，适用于不同的应用场景：</p>
+                
                 <table class="param-table">
                     <thead>
                         <tr>
-                            <th>功能</th>
+                            <th>模式</th>
                             <th>描述</th>
-                            <th>参数</th>
+                            <th>操作方式</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Connect</td>
-                            <td>连接到机械臂</td>
+                            <td><strong>Serial Control 模式</strong></td>
+                            <td>通过软件界面控制机械臂运动</td>
                             <td>
                                 <ul>
-                                    <li>串口: COM1-COM99</li>
-                                    <li>波特率: 115200</li>
+                                    <li>使用滑块调整各关节角度</li>
+                                    <li>点击<strong>Execute</strong>按钮执行运动</li>
+                                    <li>机械臂将运动到设定的目标位置</li>
                                 </ul>
                             </td>
                         </tr>
                         <tr>
-                            <td>Disconnect</td>
-                            <td>安全断开连接</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>Refresh</td>
-                            <td>刷新可用串口列表</td>
-                            <td>无</td>
+                            <td><strong>Mini Controller 模式</strong></td>
+                            <td>通过外部硬件进行遥操作控制</td>
+                            <td>
+                                <ul>
+                                    <li>连接电位器等第三方硬件</li>
+                                    <li>通过硬件实时控制关节角度</li>
+                                    <li>此模式下<strong>Execute</strong>按钮不工作</li>
+                                </ul>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>运动控制</h4>
-                <table class="param-table">
-                    <thead>
-                        <tr>
-                            <th>功能</th>
-                            <th>描述</th>
-                            <th>参数范围</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>电位器开关</td>
-                            <td>切换控制模式</td>
-                            <td>ON/OFF</td>
-                        </tr>
-                        <tr>
-                            <td>关节滑块</td>
-                            <td>控制各关节角度</td>
-                            <td>-180° ~ +180°</td>
-                        </tr>
-                        <tr>
-                            <td>末端执行器</td>
-                            <td>控制夹爪开合</td>
-                            <td>OPEN/CLOSE</td>
-                        </tr>
-                        <tr>
-                            <td>归零按钮</td>
-                            <td>使机械臂回到初始位置</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td>执行按钮</td>
-                            <td>执行当前设定的动作</td>
-                            <td>-</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h4>记录和重播</h4>
+                <p>Controller提供轨迹录制和重播功能，可用于示教编程和重复性任务。</p>
+
+                <h5>录制流程</h5>
+                <ol>
+                    <li><strong>开始录制</strong> - 点击<strong>Recording</strong>按钮开始录制会话</li>
+                    <li><strong>调整位置</strong> - 点击<strong>Execute</strong>按钮，机械臂会运动到当前设定的关节角度（临时位置）</li>
+                    <li><strong>记录路点</strong> - 点击<strong>Record Once</strong>按钮记录当前临时位置
+                        <ul>
+                            <li><strong>注意：</strong>在点击Record Once之前，可以多次调整并Execute来确定理想的临时位置</li>
+                        </ul>
+                    </li>
+                    <li><strong>延迟设置</strong> - 可以设置每次Record Once之间的延迟时间，控制轨迹执行速度</li>
+                    <li><strong>停止录制</strong> - 点击<strong>Stop Recording</strong>按钮停止录制，系统会自动保存为JSON格式的关节轨迹文件</li>
+                </ol>
+
+                <div style="margin-top: 20px; margin-bottom: 20px; justify-content: center;">
+                    <img src="/assets/images/controller_frame_a.png" alt="Controller界面" class="img-fluid" style="max-width: 90%; border: 1px solid #e9ecef; border-radius: 4px;">
+                </div>
+
+                <h5>重播流程</h5>
+                <ol>
+                    <li><strong>设置次数</strong> - 在输入框中设置重播次数</li>
+                    <li><strong>开始重播</strong> - 点击<strong>Replay Trajectory</strong>按钮开始重播录制的关节轨迹</li>
+                    <li><strong>暂停/继续</strong> - 运动过程中可以点击<strong>Stop</strong>按钮临时暂停，再次点击继续运动</li>
+                </ol>
 
                 <div class="alert alert-warning">
                     <h5>注意事项：</h5>
                     <ul>
-                        <li>首次使用请进行Home位置校准</li>
-                        <li>切换模式前确保机械臂处于安全位置</li>
-                        <li>注意工作空间限制</li>
+                        <li>设置中的上下限校准需要配合控制器关节运动到极限/90°位置进行校准</li>
+                        <li>切换控制模式前确保机械臂处于安全位置</li>
+                        <li>录制轨迹时注意工作空间限制，避免碰撞</li>
+                        <li>重播前请确保机械臂周围环境与录制时一致</li>
                     </ul>
                 </div>
-            </section>
-            <hr class="divider">
-      
-            <!-- Anytroller -->
-            <section id="anytroller">
-                <h3>Anytroller</h3>
-                <div class="alert alert-info">
-                    <p>Anytroller是一个通用机械臂控制接口，支持1-8个关节的自定义机械臂配置和控制。</p>
-                </div>
 
-                <h4>初始化配置</h4>
+                <h4>第三方控制器</h4>
+                <p>Controller支持第三方机械臂的配置和控制，具有高度的灵活性和适配性。</p>
+                
                 <table class="param-table">
-                    <thead>
-                        <tr>
-                            <th>参数</th>
-                            <th>描述</th>
-                            <th>取值范围</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
-                            <td>关节数量</td>
-                            <td>设置机械臂的关节数</td>
-                            <td>1-8个</td>
+                            <td style="width: 35%;"><strong>自动适配关节数</strong></td>
+                            <td style="width: 65%;">当使用第三方机械臂配置时，Controller中的关节滑轨会自动调整为与机械臂自由度一致的数量。例如，6轴机械臂会显示6个关节滑块，7轴机械臂会显示7个关节滑块。</td>
                         </tr>
                         <tr>
-                            <td>初始位置</td>
-                            <td>各关节的起始角度</td>
-                            <td>-180° ~ +180°</td>
-                        </tr>
-                        <tr>
-                            <td>运动范围</td>
-                            <td>各关节的最大运动范围</td>
-                            <td>可自定义限位角度</td>
+                            <td style="width: 35%;"><strong>通讯协议对照表</strong></td>
+                            <td style="width: 65%;">右上角提供通讯协议对照表，便于用户快速适配Noman-app的通讯格式。对照表包含关节编号、数据格式、波特率等关键信息，帮助用户正确配置串口通讯参数。</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>控制功能</h4>
-                <table class="param-table">
-                    <thead>
-                        <tr>
-                            <th>功能</th>
-                            <th>描述</th>
-                            <th>参数</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>关节控制</td>
-                            <td>独立控制每个关节</td>
-                            <td>
-                                <ul>
-                                    <li>角度: -180° ~ +180°</li>
-                                    <li>速度: 0-100%</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>同步运动</td>
-                            <td>多关节协同运动</td>
-                            <td>支持自定义运动序列</td>
-                        </tr>
-                        <tr>
-                            <td>Home位置</td>
-                            <td>返回预设的初始位置</td>
-                            <td>可自定义Home位置</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="alert alert-warning">
-                    <h5>使用注意：</h5>
-                    <ul>
-                        <li>首次使用前必须完成初始化配置</li>
-                        <li>确保所有关节参数设置正确，避免碰撞</li>
-                        <li>建议先在低速模式下测试运动</li>
-                        <li>保存配置后可导出为配置文件供后续使用</li>
-                    </ul>
-                </div>
             </section>
             <hr class="divider">
 
@@ -978,101 +915,69 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
             <section id="kinematics">
                 <h3>运动学模块</h3>
                 <div class="alert alert-info">
-                    <p>运动学模块提供了完整的机械臂运动学解算和路径规划功能，支持多种算法和应用场景。</p>
+                    <p>运动学模块提供了完整的机械臂运动学解算和路径规划功能，以及任务板进行示教编程。</p>
                 </div>
 
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>功能</th>
-                            <th>说明</th>
-                            <th>参数设置</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>URDF配置</td>
-                            <td>机械臂模型加载</td>
-                            <td>
-                                <ul>
-                                    <li>加载URDF文件</li>
-                                    <li>导入URDF (默认: Minima)</li>
-                                    <li>URDF预览</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>求解器参数</td>
-                            <td>运动学求解器配置</td>
-                            <td>
-                                <ul>
-                                    <li>逆解算器选择:
-                                        <ul>
-                                            <li>PyBullet求解器</li>
-                                            <li>Levenberg-Marquardt求解器</li>
-                                        </ul>
-                                    </li>
-                                    <li>规划器选择:
-                                        <ul>
-                                            <li>Linear规划器</li>
-                                            <li>RRT规划器</li>
-                                            <li>CHOMP规划器</li>
-                                        </ul>
-                                    </li>
-                                    <li>求解参数:
-                                        <ul>
-                                            <li>残差阈值 (Residual Threshold)</li>
-                                            <li>最大迭代次数 (Max Iterations)</li>
-                                            <li>Lambda参数 (仅LM算法)</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>运动学计算</td>
-                            <td>正逆运动学求解</td>
-                            <td>
-                                <ul>
-                                    <li>正运动学:
-                                        <ul>
-                                            <li>关节角度输入</li>
-                                            <li>末端位姿计算</li>
-                                        </ul>
-                                    </li>
-                                    <li>逆运动学:
-                                        <ul>
-                                            <li>目标位置(XYZ)输入</li>
-                                            <li>路径点设置</li>
-                                            <li>规划器启用选项</li>
-                                            <li>路径点数量设置</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>控制模式</td>
-                            <td>机械臂控制方式</td>
-                            <td>
-                                <ul>
-                                    <li>位姿控制 (摄像头)</li>
-                                    <li>G-code控制</li>
-                                    <li>工作空间分析器</li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h4>初始化</h4>
+                <p>机械臂进行逆运动学求解时，需要配置以下关键参数：</p>
+
+                <div style="margin-top: 20px; margin-bottom: 20px; text-align: center;">
+                    <img src="/assets/images/kinematics_frame_a.png" alt="坐标系示意图" class="img-fluid" style="max-width: 90%; border: 1px solid #e9ecef; border-radius: 4px;">
+                </div>
+
+                <h5>1. 规划器 (Planner)</h5>
+                <ul>
+                    <li><strong>Direct（直接）</strong> - 无规划模式。直接从起点到终点，不进行路径避障规划。速度最快，但可能发生碰撞。</li>
+                    <li><strong>RRT* (Rapidly-exploring Random Tree)</strong> - 基于采样的快速随机树路径规划算法。通过随机采样和树扩展来探索配置空间，寻找避免碰撞的路径。RRT*是对RRT的改进版本，具有渐进最优性。</li>
+                    <li><strong>CHOMP (Covariant Hamiltonian Optimization for Motion Planning)</strong> - 协方差哈密顿优化运动规划算法。基于梯度优化方法，通过迭代优化轨迹来满足碰撞约束。CHOMP能够在高维配置空间中生成平滑、无碰撞的轨迹。</li>
+                </ul>
+
+                <h5>2. 求解器 (Solver)</h5>
+                <ul>
+                    <li><strong>Levenberg-Marquardt (默认)</strong> - 阻尼最小二乘方法，结合了高斯-牛顿法和梯度下降法的优势。适用于非线性优化问题，收敛速度快且稳定性好。</li>
+                    <li><strong>Damped Least Square</strong> - 阻尼最小二乘求解器，通过引入阻尼项来改善雅可比矩阵奇异问题。在处理奇异配置时更稳健。</li>
+                    <li><strong>TRAC-IK</strong> - 基于跟踪的逆运动学求解器，通过前向跟踪和反向搜索相结合，能够高效地找到逆运动学解。</li>
+                    <li><strong>用户导入求解器</strong> - 用户可以根据需要导入自定义求解器。导入的求解器需符合特定格式要求，请参照custom solver样例进行配置。</li>
+                </ul>
+
+                <h5>3. 求解器参数</h5>
+                <p>切换不同的求解器会有不同的参数设置选项，常见的参数包括：</p>
+                <ul>
+                    <li><strong>最大迭代次数 (Max Iterations)</strong> - 求解器的最大迭代次数，控制求解时间和精度的平衡。</li>
+                    <li><strong>Epsilon (学习率)</strong> - 控制每次迭代的步长，影响收敛速度和稳定性。</li>
+                    <li><strong>残差阈值 (Residual Threshold)</strong> - 判断收敛的误差阈值。</li>
+                    <li><strong>Lambda参数</strong> - 仅在Levenberg-Marquardt算法中使用，用于平衡高斯-牛顿法和梯度下降法。</li>
+                </ul>
+
+                <h5>4. 路径点 (Path Points)</h5>
+                <p>路径点定义了机械臂在从A点到B点时必须经过的途径点数量。当机械臂进行从A到B的逆运动学求解时，系统会：</p>
+                <ul>
+                    <li>根据设定的路径点数量，自动生成从A到B的中间路径点。</li>
+                    <li>通过选定的规划器（如RRT*或CHOMP）进行避障路径规划。</li>
+                    <li>使用内置的笛卡尔空间（Cartesian）插值方法，在路径点之间生成平滑的轨迹。</li>
+                    <li>确保整个运动过程既满足避障要求，又保证运动的平滑性和精确性。</li>
+                </ul>
+
+                <h5>5. 检查自碰撞</h5>
+                <p>类似于MoveIt Setup Assistant，通过采样在关节可达区域将关节组分为总是、偶尔、从不碰撞，自碰撞组为偶尔碰撞的关节组。该检查在初始化时执行，以便路径规划在考虑环境碰撞的同时避免自碰撞。</p>
 
                 <div class="alert alert-warning">
                     <h5>注意事项：</h5>
                     <ul>
-                        <li>使用高级规划功能前请确保已正确配置关依赖</li>
-                        <li>建议在仿真环境中测试复杂轨迹</li>
-                        <li>进行工作空间分析时注意机械臂的物理限制</li>
+                        <li>Path Points设置较大会增加计算时间，建议根据实际需求调整</li>
+                        <li>Direct模式不进行避障，仅适用于无障碍环境</li>
                     </ul>
                 </div>
+
+                <h4>坐标系 (Coordinate Frames)</h4>
+                <div style="margin-top: 20px; margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap;">
+                    <img src="/assets/images/base_frame.png" alt="Base基座坐标系" class="img-fluid" style="flex: 1; min-width: 300px; max-width: 43.2%; border: 1px solid #e9ecef; border-radius: 4px;">
+                    <img src="/assets/images/tool_frame.png" alt="Tool工具坐标系" class="img-fluid" style="flex: 1; min-width: 300px; max-width: 43.2%; border: 1px solid #e9ecef; border-radius: 4px;">
+                </div>
+                <ul>
+                    <li><strong>Base 基座坐标系</strong> - 基座坐标系以机械臂零点为原心的坐标系，一般以base link底部为中心。末端的XYZ和RPY位姿相对于这个点进行计算。这是默认的坐标系。</li>
+                    <li><strong>工具坐标系 (Tool Frame)</strong> - 以末端法兰作为原心的坐标系。当机械臂的末端工具相对于法兰盘设置了XYZ或者RPY偏移，机械臂的运动将相对于法兰盘中心进行相对运动。这使得在更换不同工具时，无需重新调整整个运动轨迹，只需更新工具坐标系参数即可。</li>
+                </ul>
             </section>
             <hr class="divider">
 
@@ -1080,7 +985,7 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
             <section id="firmware">
                 <h3>固件管理</h3>
                 <div class="alert alert-info">
-                    <p>固件管理模块提供Minima机械臂的固件更新功能。请确保更新过程中电源稳定。</p>
+                    <p>固件管理模块进行远程/本地固件更新。请连接串口，并保持烧录过程中的串口连接稳定。</p>
                 </div>
 
                 <h4>基本配置</h4>
@@ -1092,15 +997,6 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>串口连接</td>
-                            <td>
-                                <ul>
-                                    <li>端口选择: COM1-COM99</li>
-                                    <li>自动检测可用串口</li>
-                                </ul>
-                            </td>
-                        </tr>
                         <tr>
                             <td>开发板选择</td>
                             <td>
