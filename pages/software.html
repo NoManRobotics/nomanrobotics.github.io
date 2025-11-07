@@ -204,6 +204,7 @@ hr.divider {
                 <ul class="nav flex-column">
                     <li class="nav-item"><a class="nav-link" href="#item_1_1">用户手册</a></li>
                     <li class="nav-item"><a class="nav-link" href="#item_1_2">软件下载</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#item_1_2_1">校准</a></li>
                     <li class="nav-item"><a class="nav-link" href="#item_1_3">ROS</a></li>
                     <li class="nav-item"><a class="nav-link" href="#item_1_4">ROS2</a></li>
                 </ul>
@@ -214,6 +215,7 @@ hr.divider {
                     <li class="nav-item"><a class="nav-link" href="#controller">Controller 控制器</a></li>
                     <li class="nav-item"><a class="nav-link" href="#ros">ROS 接口</a></li>
                     <li class="nav-item"><a class="nav-link" href="#kinematics">Kinematics 运动学</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#offline_programming">Offline Programming 离线编程</a></li>
                     <li class="nav-item"><a class="nav-link" href="#firmware">Firmware 固件管理</a></li>
                 </ul>
             </li>
@@ -407,6 +409,18 @@ hr.divider {
                 <p><strong>注意：</strong>机械臂主控固件已预先安装在您的机械臂中，用户通常无需自行下载或安装。如果您需要重新安装固件或进行手动更新，可以从以下链接下载最新版本的固件：<a href="https://github.com/NoManRobotics/minima-firmware" target="_blank" style="text-decoration: underline; color: purple;">下载 Minima 机械臂固件</a></p>
                 
                 <p>我们建议通过软件自动烧录固件。只需在Noman-app中找到"固件"选项，然后按照提示进行操作烧录最新固件。</p>
+            </section>
+            <hr class="divider">
+
+            <!-- Item 1.2.1 -->
+            <section id="item_1_2_1">
+                <h3>校准</h3>
+                <p>MINIMA 校准需将关节分别运动至以下姿态（通过Controller滑块），同时在setting的robot settings中，对每个关节的PWM pulse上下范围进行微调。当你发现软件上关节运动到指定位置（比如90°），而实际到达偏多/偏少，这就是错误映射关系!</p>
+                
+                <p>这是非常重要的步骤，对于舵机来说：只有正确的关节映射，才能让逆运动学解算的笛卡尔坐标点在物理世界精确到达。</p>
+                <div style="margin-top: 20px; margin-bottom: 20px; text-align: center;">
+                    <img src="/assets/images/calibration_poses.png" alt="MINIMA校准姿态" class="img-fluid" style="max-width: 75%; display: block; margin-left: auto; margin-right: auto; border: 1px solid #e9ecef; border-radius: 4px;">
+                </div>
             </section>
             <hr class="divider">
 
@@ -978,6 +992,162 @@ setx /m QT_QPA_PLATFORM_PLUGIN_PATH C:\Qt\Qt5.12.12\5.12.12\msvc2017_64\plugins\
                     <li><strong>Base 基座坐标系</strong> - 基座坐标系以机械臂零点为原心的坐标系，一般以base link底部为中心。末端的XYZ和RPY位姿相对于这个点进行计算。这是默认的坐标系。</li>
                     <li><strong>工具坐标系 (Tool Frame)</strong> - 以末端法兰作为原心的坐标系。当机械臂的末端工具相对于法兰盘设置了XYZ或者RPY偏移，机械臂的运动将相对于法兰盘中心进行相对运动。这使得在更换不同工具时，无需重新调整整个运动轨迹，只需更新工具坐标系参数即可。</li>
                 </ul>
+            </section>
+            <hr class="divider">
+
+            <!-- Offline Programming -->
+            <section id="offline_programming">
+                <h3>Offline Programming 离线编程</h3>
+                <div class="alert alert-info">
+                    <p>离线编程允许用户通过编写运动指令来控制机械臂执行复杂的运动轨迹。系统支持三种基本运动类型，所有运动都基于笛卡尔空间的目标位姿进行规划和执行。</p>
+                </div>
+
+                <div class="alert alert-secondary" style="background-color: #f8f9fa; border-left: 4px solid #6c757d;">
+                    <h5 style="margin-top: 0;">基本语法规则</h5>
+                    <ul style="margin-bottom: 0;">
+                        <li>每行一个指令</li>
+                        <li>分号 <code>;</code> 后添加注释</li>
+                        <li>坐标单位：米(m)，角度单位：度(°)</li>
+                        <li>参数格式：<code>参数名=&lt;值&gt;</code></li>
+                        <li>可选参数用 <code>[ ]</code> 表示</li>
+                    </ul>
+                </div>
+
+                <hr style="border-top: 2px dashed #dee2e6; margin: 30px 0;">
+
+                <h4>PTP - 点到点运动</h4>
+                <p>以最短关节路径，将末端执行器移动到指定的笛卡尔坐标位置。各关节独立运动，路径由关节空间插值决定，末端执行器的笛卡尔路径不一定是直线。</p>
+                
+                <p><strong>语法：</strong></p>
+                <pre><code>PTP X=&lt;x&gt; Y=&lt;y&gt; Z=&lt;z&gt; [A=&lt;a&gt;] [B=&lt;b&gt;] [C=&lt;c&gt;];</code></pre>
+                
+                <p><strong>参数说明：</strong></p>
+                <ul>
+                    <li><code>X, Y, Z</code> - 目标位置的笛卡尔坐标（单位：米）</li>
+                    <li><code>A, B, C</code> - 目标姿态的旋转角度（单位：度），分别对应 Roll、Pitch、Yaw（可选）</li>
+                </ul>
+
+                <p><strong>运动特点：</strong></p>
+                <ul>
+                    <li>速度快，效率高，关节空间插值计算简单</li>
+                    <li>各关节同时启动和停止，但可能以不同的速度运动</li>
+                    <li>不需要频繁的逆运动学求解</li>
+                    <li>适合点位操作，如拾取、放置、点位标记等</li>
+                </ul>
+
+                <p><strong>示例：</strong></p>
+                <pre><code>PTP X=0.2 Y=0 Z=0.15 A=0 B=0 C=90;  ; 移动到指定位置和姿态
+PTP X=0.25 Y=0.1 Z=0.2;             ; 仅指定位置，保持当前姿态</code></pre>
+
+                <hr style="border-top: 2px dashed #dee2e6; margin: 30px 0;">
+
+                <h4>LIN - 直线运动</h4>
+                <p>末端执行器在笛卡尔空间中沿直线路径从起点移动到终点。系统会连续进行逆运动学求解以保证直线路径，并根据设定的路径点数量进行线性插值。</p>
+                
+                <p><strong>语法：</strong></p>
+                <pre><code>LIN X=&lt;x&gt; Y=&lt;y&gt; Z=&lt;z&gt; [A=&lt;a&gt;] [B=&lt;b&gt;] [C=&lt;c&gt;];</code></pre>
+                
+                <p><strong>参数说明：</strong></p>
+                <ul>
+                    <li><code>X, Y, Z</code> - 目标位置的笛卡尔坐标（单位：米）</li>
+                    <li><code>A, B, C</code> - 目标姿态的旋转角度（单位：度），分别对应 Roll、Pitch、Yaw（可选）</li>
+                </ul>
+
+                <p><strong>运动特点：</strong></p>
+                <ul>
+                    <li>末端执行器严格沿直线路径运动</li>
+                    <li>系统自动在直线路径上生成中间路径点</li>
+                    <li>通过选定的规划器（RRT*、CHOMP或Direct模式）进行避障检查和平滑处理</li>
+                    <li>适用于激光切割、焊接、涂胶、装配等需要精确控制末端轨迹的应用</li>
+                </ul>
+
+                <p><strong>示例：</strong></p>
+                <pre><code>LIN X=0.25 Y=0.1 Z=0.2 A=0 B=90 C=0;  ; 沿直线移动到目标位置
+LIN X=0.3 Y=0.15 Z=0.18;              ; 直线移动，保持当前姿态</code></pre>
+
+                <hr style="border-top: 2px dashed #dee2e6; margin: 30px 0;">
+
+                <h4>CIRC - 圆弧运动（IJK偏移点模式）</h4>
+                <p>给定圆弧的起点、终点和辅助点，使末端执行器沿圆弧路径运动到目标位置。本系统采用<strong>IJK偏移点模式</strong>定义圆弧运动。</p>
+                
+                <div style="margin-top: 20px; margin-bottom: 20px; display: flex; gap: 20px; align-items: flex-start;">
+                    <div style="flex: 0.7; min-width: 180px; padding-top: 30px;">
+                        <p style="margin: 0; font-size: 16px; line-height: 1.8; color: #6c757d;">
+                            <strong style="color: #6c757d;">A：</strong>起始点<br>
+                            <strong style="color: #6c757d;">Aux：</strong>辅助点（起始点A + IJK偏移）<br>
+                            <strong style="color: #6c757d;">B：</strong>终点
+                        </p>
+                    </div>
+                    <div style="flex: 1.3; min-width: 300px;">
+                        <img src="/assets/images/circ_demo.png" alt="CIRC圆弧运动示意图" class="img-fluid" style="width: 100%; border: 1px solid #e9ecef; border-radius: 4px;">
+                    </div>
+                </div>
+
+                <p><strong>语法：</strong></p>
+                <pre><code>CIRC X=&lt;x&gt; Y=&lt;y&gt; Z=&lt;z&gt; I=&lt;i&gt; J=&lt;j&gt; K=&lt;k&gt; [A=&lt;a&gt;] [B=&lt;b&gt;] [C=&lt;c&gt;];</code></pre>
+                
+                <p><strong>参数说明：</strong></p>
+                <ul>
+                    <li><code>X, Y, Z</code> - 圆弧终点的笛卡尔坐标（单位：米）</li>
+                    <li><code>I, J, K</code> - 从起点到辅助点的偏移量（单位：米），分别对应X、Y、Z方向</li>
+                    <li><code>A, B, C</code> - 终点姿态的旋转角度（单位：度），分别对应 Roll、Pitch、Yaw（可选）</li>
+                </ul>
+
+                <div class="alert alert-info" style="margin-top: 20px;">
+                    <h5><strong>IJK偏移点模式工作原理：</strong></h5>
+                    <ol style="margin-bottom: 0;">
+                        <li><strong>起点 (Start Point)</strong> - 当前机械臂末端执行器的位置，作为圆弧的起始点</li>
+                        <li><strong>辅助点 (Auxiliary Point)</strong> - 辅助点位置 = 起点位置 + (I, J, K)偏移量，用于确定圆弧路径</li>
+                        <li><strong>终点 (End Point)</strong> - 由指令中的 X, Y, Z 坐标指定</li>
+                        <li><strong>圆弧生成</strong> - 系统根据起点、辅助点和终点三个参数，计算出唯一确定的圆弧路径</li>
+                        <li><strong>路径选择</strong> - 圆弧经过这三个点，形成平滑的圆弧轨迹</li>
+                    </ol>
+                </div>
+
+                <p><strong>运动特点：</strong></p>
+                <ul>
+                    <li>末端执行器严格按照圆弧路径运动，保持恒定的曲率半径</li>
+                    <li>姿态在圆弧运动过程中从起点姿态平滑过渡到终点姿态</li>
+                    <li>系统根据设定的路径点数量在圆弧上均匀插值生成中间点</li>
+                    <li>适用于圆弧焊接、倒角加工、轮廓跟踪、曲面加工等应用</li>
+                </ul>
+
+                <p><strong>示例：</strong></p>
+                <pre><code>; 示例1: 在XY平面上绘制一个圆弧
+CIRC X=0.3 Y=0.15 Z=0.15 I=0.05 J=0 K=0 A=0 B=90 C=45;
+
+; 解释：
+; - 假设起点为 (0.25, 0.1, 0.15)
+; - 辅助点位置 = 起点 + IJK = (0.25+0.05, 0.1+0, 0.15+0) = (0.3, 0.1, 0.15)
+; - 终点位置 = (0.3, 0.15, 0.15)
+; - 圆弧经过起点、辅助点、终点三个点
+; - 终点姿态为 Roll=0°, Pitch=90°, Yaw=45°
+
+; 示例2: 空间圆弧运动
+CIRC X=0.2 Y=0.15 Z=0.18 I=0 J=0.025 K=0.015;</code></pre>
+
+                <div class="alert alert-warning" style="margin-top: 20px;">
+                    <h5><strong>注意事项：</strong></h5>
+                    <ul style="margin-bottom: 0;">
+                        <li>确保起点、辅助点和终点三点不共线，否则无法形成有效圆弧</li>
+                        <li>三点确定唯一圆弧，系统会自动计算圆心和半径</li>
+                        <li>如果参数设置不当，系统会报错提示无法生成有效圆弧</li>
+                    </ul>
+                </div>
+
+                <hr style="border-top: 2px dashed #dee2e6; margin: 30px 0;">
+
+                <div class="alert alert-success">
+                    <h5 style="margin-top: 0;"><strong>编程提示与最佳实践</strong></h5>
+                    <ul style="margin-bottom: 0;">
+                        <li><strong>指令组合</strong> - 所有运动指令都可以串联使用，形成复杂的运动轨迹程序</li>
+                        <li><strong>路径规划</strong> - LIN 和 CIRC 指令会使用初始化配置中设置的路径点数量和规划器参数</li>
+                        <li><strong>仿真验证</strong> - 建议在实际运行前使用仿真功能验证轨迹的正确性和安全性</li>
+                        <li><strong>姿态控制</strong> - 如果不需要改变姿态，可以省略 A、B、C 参数</li>
+                        <li><strong>单位一致性</strong> - 始终确保使用正确的单位（位置：米，角度：度）</li>
+                        <li><strong>注释使用</strong> - 使用分号 <code>;</code> 添加注释，提高程序可读性</li>
+                    </ul>
+                </div>
             </section>
             <hr class="divider">
 
